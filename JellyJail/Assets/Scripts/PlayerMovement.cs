@@ -12,12 +12,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     Vector3 moveInput;
     Vector3 moveVelocity;
+    public bool isInAir;
 
     [Header("Shooting")]
     Camera mainCamera;
-    public bool isShooting; //maybe i'll use this?
+    //public bool isShooting; //maybe i'll use this?
     [SerializeField] float timeBetweenShots;
-
+    [SerializeField] float shootForce = 13;
     [SerializeField] GameObject bulletGO;
     [SerializeField] Transform firePoint;
 
@@ -35,18 +36,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Aim();
-
-        moveInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        moveVelocity = moveInput * moveSpeed;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //rb.velocity.y = 10f;
-        }
+        Move();
 
         if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1)
         {
+            //spawns a bullet and throws it
             GameObject newBullet = Instantiate(bulletGO, firePoint.position, firePoint.rotation);
-            newBullet.GetComponent<Rigidbody>().velocity = transform.forward * 10;
+            newBullet.GetComponent<Rigidbody>().velocity = transform.forward * shootForce;
+            //player gets smaller and removes a bullet from inventory
             transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
             bullets--;
         }
@@ -59,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("picked up a slime ball");
             Destroy(collision.gameObject); //expensive but works
+            //player gets bigger and adds a bullet to inventory
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             bullets++;
         }
@@ -68,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //rb.velocity = moveVelocity;
         rb.velocity = new Vector3(moveVelocity.x, rb.velocity.y, moveVelocity.z);
-        //Debug.Log(rb.velocity.y);
+        //Debug.Log(rb.velocity);
     }
 
     (bool success, Vector3 position) GetMousePosition()
@@ -87,6 +85,29 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void Move()
+    {
+        moveInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        moveVelocity = moveInput * moveSpeed;
+
+        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f))
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //youre supposed to jump why aren't you jumping???
+                moveVelocity.y = 10;
+                rb.velocity = new Vector3(rb.velocity.x, moveVelocity.y, rb.velocity.z);
+            }
+            isInAir = false;
+        }
+        else
+        {
+            isInAir = true;
+        }
+        
+        //Debug.Log(moveVelocity);
+    }
+
     void Aim()
     {
         var (success, position) = GetMousePosition();
@@ -95,6 +116,18 @@ public class PlayerMovement : MonoBehaviour
             var direction = position - transform.position;
             direction.y = 0f;
             transform.forward = direction;
+        }
+    }
+
+    public float DistanceFromGround()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity))
+        {
+            return hit.distance;
+        }
+        else
+        {
+            return 0f;
         }
     }
 }

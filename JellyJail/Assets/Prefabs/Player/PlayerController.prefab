@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7790547950516464961}
   m_Layer: 0
   m_Name: PlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &7790547950516464961
 MonoBehaviour:
@@ -134,8 +134,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   moveSpeed: 5
-  isShooting: 0
+  isInAir: 0
   timeBetweenShots: 0
+  shootForce: 13
   bulletGO: {fileID: 8984918667799580261, guid: 858b8dde247e2b14eaa31af77378ef98, type: 3}
   firePoint: {fileID: 2626875287815786969}
   bullets: 3

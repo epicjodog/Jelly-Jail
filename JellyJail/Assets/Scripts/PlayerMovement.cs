@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bulletGO;
     [SerializeField] Transform firePoint;
 
-    //[SerializeField] int maxBullets = 3; //max bullets before needing to pick them up again
-    int bullets = 3; //number of bullets carried
+    public int bullets = 3; //number of bullets carried
+    public int health = 4;
 
     // Start is called before the first frame update
     void Start()

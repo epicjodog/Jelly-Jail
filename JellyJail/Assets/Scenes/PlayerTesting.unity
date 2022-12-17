@@ -175,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5986406869b4b7c43adb787562b906e6, type: 2}
+  - {fileID: 2100000, guid: 9629b5ada50cd33408f9f03d75f5eb04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,8 +213,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137729560}
   m_LocalRotation: {x: -0, y: 0.7071058, z: -0, w: 0.7071078}
-  m_LocalPosition: {x: 0, y: 1.04, z: -10.119999}
-  m_LocalScale: {x: 1, y: 2, z: 21.020002}
+  m_LocalPosition: {x: 0.000000018378, y: 1.04, z: -10.119999}
+  m_LocalScale: {x: 1, y: 2, z: 20.209892}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 150969674}
@@ -672,7 +672,6 @@ MonoBehaviour:
   timeBetweenShots: 0
   bulletGO: {fileID: 1769463432}
   firePoint: {fileID: 1380005079}
-  maxBullets: 3
 --- !u!54 &1147284512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -966,7 +965,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5986406869b4b7c43adb787562b906e6, type: 2}
+  - {fileID: 2100000, guid: 9629b5ada50cd33408f9f03d75f5eb04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

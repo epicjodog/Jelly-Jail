@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         gameObject.tag = "Untagged";
+        gameObject.layer = 7;
     }
 
     // Update is called once per frame
@@ -19,6 +20,7 @@ public class Bullet : MonoBehaviour
         if(timer > timeBeforePickup)
         {
             gameObject.tag = "Bullet";
+            gameObject.layer = 0;
         }
         else
         {

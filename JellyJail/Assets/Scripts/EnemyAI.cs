@@ -13,9 +13,11 @@ public class EnemyAI : MonoBehaviour
         Spiky,
         Splitter,
         Shielded,
-        Ranger
+        Ranger,
+        Warden
     }
 
+    [Header("General")]
     [SerializeField] EnemyType enemyType = EnemyType.Angry;
     [SerializeField] int health = 3;
     [SerializeField] TextMeshPro healthText;
@@ -23,18 +25,32 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] LayerMask groundLayer, playerLayer;
 
-    //Patrolling
-    [SerializeField] Vector3 walkPoint;
-    bool walkPointSet;
+    [Header("Patrolling")]  
     [SerializeField] float walkPointRange;
+    Vector3 walkPoint;
+    bool walkPointSet;
 
-    //Attacking
+    [Header("Attacking")]
     [SerializeField] float timeBetweenAttacks;
     bool alreadyAttacked;
 
-    //States
-    [SerializeField] float sightRange, attackRange;
+    [Header("AI States")]
+    [SerializeField] float sightRange;
+    [SerializeField] float attackRange;
     bool playerInSightRange, playerInAttackRange;
+
+    [Header("Shooting")]
+    [SerializeField] GameObject bulletGO;
+    [SerializeField] Transform firePoint;
+    [SerializeField] float shootForce = 13;
+
+    [Header("Warden")]
+    [SerializeField] GameObject shockWaveGO;
+    float timer; //just for the warden
+    bool makingShockwaves = false;
+    bool isInAir = false;
+    bool firstShockwave = true;
+    Quaternion originalRotation;
 
     private void Awake()
     {
@@ -50,9 +66,64 @@ public class EnemyAI : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (enemyType == EnemyType.Angry)
+        {
+            if (!playerInSightRange && !playerInAttackRange) Patrolling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        }
+        else if (enemyType == EnemyType.Ranger)
+        {
+            if (!playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && !playerInAttackRange) RunAway();
+            if (playerInSightRange && playerInAttackRange) { ShootPlayer(); RunAway(); }
+        }
+        else if (enemyType == EnemyType.Shielded)
+        {
+            if (!playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && !playerInAttackRange) RunAway();
+            if (playerInSightRange && playerInAttackRange) BashPlayer();
+            LookAtPlayer();
+        }
+        else if (enemyType == EnemyType.Spiky)
+        {
+            if (!playerInSightRange && !playerInAttackRange) Patrolling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && playerInAttackRange) ShootPlayer();
+
+        }
+        else if (enemyType == EnemyType.Splitter)
+        {
+            if (!playerInSightRange && !playerInAttackRange) Patrolling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        }
+        else if (enemyType == EnemyType.Warden)
+        {
+            timer += Time.deltaTime;
+            //Debug.Log(timer);
+            if (timer >= 20f)
+            {
+                if (!makingShockwaves) makingShockwaves = true;
+                else makingShockwaves = false;
+                timer = 0f;
+            }
+
+            if (!makingShockwaves)
+            {
+                agent.enabled = true;
+                ChasePlayer();
+                ShootPlayer();
+                firstShockwave = true;
+            }
+            else
+            {
+                agent.enabled = false;
+                originalRotation = new Quaternion(0, transform.rotation.y, 0, 0);
+                Shockwave();
+            }
+            
+        }
     }
 
     void Patrolling()
@@ -70,7 +141,7 @@ public class EnemyAI : MonoBehaviour
     void AttackPlayer()
     {
         agent.SetDestination(transform.position);
-        transform.LookAt(player.transform);
+        LookAtPlayer();
 
         if (!alreadyAttacked)
         {
@@ -78,6 +149,48 @@ public class EnemyAI : MonoBehaviour
             player.GetComponent<PlayerMovement>().TakeDamage();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+    void RunAway()
+    {
+        Vector3 runTo = transform.position + ((transform.position - player.transform.position)/* * multiplier*/);
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance < sightRange) agent.SetDestination(runTo);
+    }
+    void ShootPlayer()
+    {
+        LookAtPlayer();
+
+        if (!alreadyAttacked)
+        {
+            GameObject newBullet = Instantiate(bulletGO, firePoint.position, firePoint.rotation);
+            newBullet.GetComponent<Rigidbody>().velocity = transform.forward * shootForce;
+            player.GetComponent<PlayerMovement>().TakeDamage();
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+    void BashPlayer()
+    {
+        Rigidbody rb = player.GetComponent<Rigidbody>();
+        Debug.Log(transform.forward);
+        rb.AddForce(transform.forward * 500);
+    }
+    void Shockwave()
+    {
+        
+        Rigidbody rb = GetComponent<Rigidbody>();
+        isInAir = !Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f);
+        if (!isInAir)
+        {
+            rb.AddForce(new Vector3(0, 50, 0));
+            isInAir = true;
+            if(!firstShockwave)
+            {
+                Instantiate(shockWaveGO, transform.position, Quaternion.identity);
+                transform.rotation = originalRotation;
+            }
+            firstShockwave = false;
         }
     }
 
@@ -104,9 +217,16 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Groundpound"))
+        if (other.gameObject.CompareTag("Groundpound") && enemyType != EnemyType.Splitter)
         {
             TakeDamage(Random.Range(2, 4));
+            //uuuuuuuuuuu
+            Rigidbody rb = other.gameObject.GetComponentInParent<Rigidbody>();
+            rb.velocity = new Vector3(rb.velocity.x, 5, rb.velocity.z);
+            if(enemyType == EnemyType.Spiky)
+            {
+                other.gameObject.GetComponentInParent<PlayerMovement>().TakeDamage();
+            }
         }
     }
 
@@ -118,13 +238,25 @@ public class EnemyAI : MonoBehaviour
         {
             agent.enabled = false;
             Invoke(nameof(Die), 0.5f); //delayed time before dying, maybe we need it?
-                                       //death animation
+                                       //death animation           
         }
     }
 
     void Die()
     {
         Destroy(gameObject);
+
+        if (enemyType == EnemyType.Splitter)
+        {
+            Instantiate(bulletGO, (transform.position + Vector3.left), transform.rotation);
+            Instantiate(bulletGO, (transform.position + Vector3.right), transform.rotation);
+        }
+    }
+    void LookAtPlayer()
+    {
+        transform.LookAt(player.transform);
+        Quaternion newRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        transform.rotation = newRotation;
     }
 
     private void OnDrawGizmosSelected()
@@ -133,5 +265,7 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(transform.position, new(walkPointRange * 2, 10, walkPointRange * 2));
     }
 }

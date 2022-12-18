@@ -13,14 +13,17 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveInput;
     Vector3 moveVelocity;
     public bool isInAir;
+    [SerializeField] float timeBetweenJumps = 3f;
+    bool isJumping = false;
 
     [Header("Shooting")]
     Camera mainCamera;
     //public bool isShooting; //maybe i'll use this?
-    [SerializeField] float timeBetweenShots;
+    [SerializeField] float timeBetweenShots = 0.5f;
     [SerializeField] float shootForce = 13;
     [SerializeField] GameObject bulletGO;
     [SerializeField] Transform firePoint;
+    bool isShooting = false;
 
     public int bullets = 3; //number of bullets carried
     public int health = 4;
@@ -38,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         Aim();
         Move();
 
-        if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1)
+        if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting)
         {
             //spawns a bullet and throws it
             GameObject newBullet = Instantiate(bulletGO, firePoint.position, firePoint.rotation);
@@ -46,9 +49,13 @@ public class PlayerMovement : MonoBehaviour
             //player gets smaller and removes a bullet from inventory
             transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
             bullets--;
+            isShooting = true;
+            Invoke(nameof(RechargeShoot), timeBetweenShots);
         }
         
     }
+    void RechargeShoot() { isShooting = false; }
+    void RechargeGroundpound() { isJumping = false; }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -92,11 +99,12 @@ public class PlayerMovement : MonoBehaviour
 
         if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f))
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
             {
-                //youre supposed to jump why aren't you jumping???
                 moveVelocity.y = 10;
                 rb.velocity = new Vector3(rb.velocity.x, moveVelocity.y, rb.velocity.z);
+                isJumping = true;
+                Invoke(nameof(RechargeGroundpound), timeBetweenJumps);
             }
             isInAir = false;
         }
@@ -128,6 +136,17 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             return 0f;
+        }
+    }
+
+    public void TakeDamage()
+    {
+        Debug.LogWarning("Player has taken damage");
+        health -= 1;
+        //update text
+        if(health <= 0)
+        {
+            Debug.LogWarning("Player has died");
         }
     }
 }

@@ -178,17 +178,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &98846226 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7570451661821092401, guid: 5d1adb94e38e4394e8661766dd75889e, type: 3}
-  m_PrefabInstance: {fileID: 7570451662850959547}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &127584428
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7790547950516464960, guid: 5b2dcdb0beeeeb547bc8e024d2c9b795, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25009373
+      value: 2.775
       objectReference: {fileID: 0}
     - target: {fileID: 7790547950516464960, guid: 5b2dcdb0beeeeb547bc8e024d2c9b795, type: 3}
       propertyPath: m_LocalPosition.z
@@ -805,6 +794,10 @@ PrefabInstance:
     - target: {fileID: 7790547950516464960, guid: 5b2dcdb0beeeeb547bc8e024d2c9b795, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790547950516464961, guid: 5b2dcdb0beeeeb547bc8e024d2c9b795, type: 3}
+      propertyPath: timeBetweenJumps
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b2dcdb0beeeeb547bc8e024d2c9b795, type: 3}
@@ -2067,10 +2060,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2472267096065648668, guid: be050eaa7f0d25c45afbe5048dd0109e, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 194213942}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be050eaa7f0d25c45afbe5048dd0109e, type: 3}
 --- !u!23 &2523531055409458384
@@ -2371,14 +2360,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3196779987966620327, guid: 1024931af18d31e4fbabc5994ae6689c, type: 3}
-      propertyPath: agent
-      value: 
-      objectReference: {fileID: 8755853066082115268}
-    - target: {fileID: 3196779987966620327, guid: 1024931af18d31e4fbabc5994ae6689c, type: 3}
-      propertyPath: healthText
-      value: 
-      objectReference: {fileID: 98846226}
     - target: {fileID: 3196779987966620345, guid: 1024931af18d31e4fbabc5994ae6689c, type: 3}
       propertyPath: m_Name
       value: Warden
@@ -3436,11 +3417,6 @@ MeshRenderer:
 --- !u!4 &8755853066082115266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1192517480072476281, guid: 5d1adb94e38e4394e8661766dd75889e, type: 3}
-  m_PrefabInstance: {fileID: 7570451662850959547}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &8755853066082115268 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 1192517480072476280, guid: 5d1adb94e38e4394e8661766dd75889e, type: 3}
   m_PrefabInstance: {fileID: 7570451662850959547}
   m_PrefabAsset: {fileID: 0}
 --- !u!33 &8763158669783419096

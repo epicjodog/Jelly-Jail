@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 2472267094950572295}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 94.07338, y: 94.07338, z: 94.07338}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2472267096065648657}
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 179.68018}
+  m_AnchoredPosition: {x: 0, y: 2.01}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2472267094950572291
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 2472267095163293286}
   - component: {fileID: 2472267095163293284}
   - component: {fileID: 2472267095163293287}
-  - component: {fileID: 2472267095163293285}
+  - component: {fileID: 8474384327608775067}
   m_Layer: 0
   m_Name: Barrier
   m_TagString: Untagged
@@ -212,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2472267095163293305}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 60.14401, y: 65.50522, z: 81.90082}
+  m_LocalPosition: {x: 0.6, y: 0.66, z: 0.82}
   m_LocalScale: {x: 1.1227393, y: 1.1227393, z: 1.1227393}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -269,7 +269,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2472267095163293285
+--- !u!65 &8474384327608775067
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,8 +280,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 165.56, y: 106.86046, z: 43.04758}
-  m_Center: {x: -49.4, y: -3.1656835, z: 2.77}
+  m_Size: {x: 1.5, y: 1.0686047, z: 0.31}
+  m_Center: {x: -0.5, y: -0.031660587, z: 0.03}
 --- !u!1 &2472267096065648656
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 2472267096065648669}
   - component: {fileID: 2472267096065648668}
   - component: {fileID: 2472267096065648671}
-  - component: {fileID: 2472267096065648670}
+  - component: {fileID: 6591891129438926551}
   m_Layer: 0
   m_Name: ShieldedSlime
   m_TagString: Enemy
@@ -312,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 2472267096065648656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.213, z: 0}
-  m_LocalScale: {x: 0.010629999, y: 0.010629999, z: 0.010629999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2472267095163293286}
@@ -393,11 +393,14 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 1
   sightRange: 5.96
-  attackRange: 2.17
+  attackRange: 1.4
+  bulletGO: {fileID: 0}
+  firePoint: {fileID: 0}
+  shootForce: 13
+  shockWaveGO: {fileID: 0}
 --- !u!195 &2472267096065648671
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -407,7 +410,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2472267096065648656}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 100
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -416,11 +419,11 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 144
+  m_Height: 1.42
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &2472267096065648670
+--- !u!65 &6591891129438926551
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -431,5 +434,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 148.23975, y: 141.81204, z: 150.46205}
-  m_Center: {x: 0, y: 70.89325, z: 0}
+  m_Size: {x: 1.4823974, y: 1.4181204, z: 1.5046204}
+  m_Center: {x: 0, y: 0.7089325, z: 0}

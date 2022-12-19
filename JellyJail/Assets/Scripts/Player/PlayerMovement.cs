@@ -18,22 +18,33 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Shooting")]
     Camera mainCamera;
-    //public bool isShooting; //maybe i'll use this?
     [SerializeField] float timeBetweenShots = 0.5f;
     [SerializeField] float shootForce = 13;
     [SerializeField] GameObject bulletGO;
     [SerializeField] Transform firePoint;
     bool isShooting = false;
 
+    [Header("Items")]
     public int bullets = 3; //number of bullets carried
     public int health = 4;
     public int tokens = 0;
+    [SerializeField] GameObject buddyGO;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
+
+        if(GlobalController.Instance.lilBuddy)
+        {
+            Instantiate(buddyGO, transform.position, transform.rotation);
+        }
+
+        health = GlobalController.Instance.currentHealth;
+        bullets = GlobalController.Instance.maxBullets;
+
+        //Update UI
     }
 
     // Update is called once per frame
@@ -165,5 +176,10 @@ public class PlayerMovement : MonoBehaviour
     {
         health += healthAdded;
         bullets += ammoAdded;
+    }
+    public void Save()
+    {
+        GlobalController.Instance.currentHealth = health;
+        GlobalController.Instance.tokens = tokens;
     }
 }

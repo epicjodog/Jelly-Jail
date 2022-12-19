@@ -327,6 +327,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  numberOfTokensOnDeath: {x: 2, y: 3}
+  tokenGO: {fileID: 450327324986802546, guid: 25d0ae3db37c7144aa5a418709c6b72a, type: 3}
   walkPointRange: 8
   timeBetweenAttacks: 3
   sightRange: 8.88

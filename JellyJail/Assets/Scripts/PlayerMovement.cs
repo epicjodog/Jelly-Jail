@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     public int bullets = 3; //number of bullets carried
     public int health = 4;
+    public int tokens = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -61,11 +62,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Bullet"))
         {
-            Debug.Log("picked up a slime ball");
+            //Debug.Log("picked up a slime ball");
             Destroy(collision.gameObject); //expensive but works
             //player gets bigger and adds a bullet to inventory
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             bullets++;
+        }
+        if(collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            TakeDamage();
+        }
+        if(collision.gameObject.CompareTag("Token"))
+        {
+            tokens++;
+            Destroy(collision.gameObject);
+            Debug.Log("picked up a token, " + tokens);
         }
     }
 
@@ -141,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.LogWarning("Player has taken damage");
+        Debug.LogWarning("Player has taken damage, health: " + health);
         health -= 1;
         //update text
         if(health <= 0)

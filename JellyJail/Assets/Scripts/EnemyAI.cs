@@ -24,6 +24,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject player;
     [SerializeField] LayerMask groundLayer, playerLayer;
+    [SerializeField] Vector2 numberOfTokensOnDeath = new (1, 2); //min/max
+    [SerializeField] GameObject tokenGO;
 
     [Header("Patrolling")]  
     [SerializeField] float walkPointRange;
@@ -165,7 +167,7 @@ public class EnemyAI : MonoBehaviour
         {
             GameObject newBullet = Instantiate(bulletGO, firePoint.position, firePoint.rotation);
             newBullet.GetComponent<Rigidbody>().velocity = transform.forward * shootForce;
-            player.GetComponent<PlayerMovement>().TakeDamage();
+            //player.GetComponent<PlayerMovement>().TakeDamage();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -238,12 +240,20 @@ public class EnemyAI : MonoBehaviour
         {
             agent.enabled = false;
             Invoke(nameof(Die), 0.5f); //delayed time before dying, maybe we need it?
-                                       //death animation           
+                                       //death animation          
         }
     }
 
     void Die()
     {
+        for (int i = 0; i < Random.Range(numberOfTokensOnDeath.x, numberOfTokensOnDeath.y); i++)
+        {
+            //Vector3 randomSpawn = new Vector3(transform.position.x + Random.Range(0.25f, 0.6f),
+                //transform.position.y, transform.position.z + Random.Range(0.25f, 0.6f));
+            GameObject newToken = Instantiate(tokenGO, transform.position, transform.rotation);
+            newToken.GetComponent<Rigidbody>().velocity = transform.up * 8;
+        }
+
         Destroy(gameObject);
 
         if (enemyType == EnemyType.Splitter)

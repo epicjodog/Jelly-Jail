@@ -160,4 +160,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogWarning("Player has died");
         }
     }
+
+    public void AddHealthAmmo(int healthAdded, int ammoAdded)
+    {
+        health += healthAdded;
+        bullets += ammoAdded;
+    }
 }

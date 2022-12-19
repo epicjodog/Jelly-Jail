@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 65
   moveSpeed: 5
   isInAir: 0
   timeBetweenJumps: 1
@@ -143,6 +143,7 @@ MonoBehaviour:
   firePoint: {fileID: 2626875287815786969}
   bullets: 3
   health: 4
+  tokens: 0
 --- !u!1 &1083752136506322891
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 1414949788576961131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1414949789356126753}
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 191.40002}
+  m_AnchoredPosition: {x: 0, y: 1.914}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1414949788576961127
@@ -209,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414949789018217078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 24.4, z: 108.4}
+  m_LocalPosition: {x: 0, y: 0.244, z: 1.084}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 1414949789356126752}
   - component: {fileID: 1414949789356126781}
   - component: {fileID: 1414949789356126754}
-  - component: {fileID: 1414949789356126780}
+  - component: {fileID: 6747023537532675628}
   m_Layer: 0
   m_Name: SpikySlime
   m_TagString: Enemy
@@ -244,9 +244,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414949789356126758}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.209, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1414949788576961130}
@@ -327,6 +327,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  numberOfTokensOnDeath: {x: 2, y: 3}
+  tokenGO: {fileID: 450327324986802546, guid: 25d0ae3db37c7144aa5a418709c6b72a, type: 3}
   walkPointRange: 8
   timeBetweenAttacks: 3
   sightRange: 8.88
@@ -334,6 +336,7 @@ MonoBehaviour:
   bulletGO: {fileID: 6880479670053347219, guid: 3f3e60ae9b1178844aa5c1289bec10ad, type: 3}
   firePoint: {fileID: 1414949789018217073}
   shootForce: 13
+  shockWaveGO: {fileID: 0}
 --- !u!195 &1414949789356126754
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -343,7 +346,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1414949789356126758}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.99
+  m_Radius: 0.6
   m_Speed: 1.75
   m_Acceleration: 8
   avoidancePriority: 50
@@ -352,11 +355,11 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.41
+  m_Height: 0.99
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &1414949789356126780
+--- !u!135 &6747023537532675628
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -367,5 +370,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 66.93
-  m_Center: {x: 0, y: 46.565105, z: 0}
+  m_Radius: 0.5619009
+  m_Center: {x: 0, y: 0.46565107, z: 0}

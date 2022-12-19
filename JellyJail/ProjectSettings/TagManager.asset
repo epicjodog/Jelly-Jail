@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Groundpound
   - EnemyBullet
+  - Token
   layers:
   - Default
   - TransparentFX

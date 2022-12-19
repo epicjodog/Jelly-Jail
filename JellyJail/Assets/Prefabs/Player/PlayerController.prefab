@@ -136,7 +136,7 @@ MonoBehaviour:
     m_Bits: 2147483647
   moveSpeed: 5
   isInAir: 0
-  timeBetweenJumps: 3
+  timeBetweenJumps: 1
   timeBetweenShots: 0.5
   shootForce: 13
   bulletGO: {fileID: 8984918667799580261, guid: 858b8dde247e2b14eaa31af77378ef98, type: 3}

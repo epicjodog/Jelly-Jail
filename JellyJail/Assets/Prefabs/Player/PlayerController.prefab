@@ -144,6 +144,7 @@ MonoBehaviour:
   bullets: 3
   health: 4
   tokens: 0
+  buddyGO: {fileID: 1085575036670404347, guid: e310b2507325bfc4faabb32f29901b70, type: 3}
 --- !u!1 &1083752136506322891
 GameObject:
   m_ObjectHideFlags: 0

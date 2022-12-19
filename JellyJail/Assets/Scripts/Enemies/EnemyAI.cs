@@ -58,6 +58,10 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.Find("PlayerController");
         agent = GetComponent<NavMeshAgent>();
+        
+    }
+    private void Start()
+    {
         healthText.text = health.ToString();
     }
 
@@ -221,7 +225,8 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Groundpound") && enemyType != EnemyType.Splitter)
         {
-            TakeDamage(Random.Range(2, 4));
+            if(GlobalController.Instance.tinyAnvil) TakeDamage(Random.Range(3, 6));
+            else TakeDamage(Random.Range(2, 4));
             //uuuuuuuuuuu
             Rigidbody rb = other.gameObject.GetComponentInParent<Rigidbody>();
             rb.velocity = new Vector3(rb.velocity.x, 5, rb.velocity.z);

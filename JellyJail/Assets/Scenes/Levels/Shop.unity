@@ -2479,6 +2479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_shop
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5ffdf049cece7394cbc0569daf2fb987, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ffdf049cece7394cbc0569daf2fb987, type: 3}
 --- !u!4 &852881632 stripped
@@ -3089,6 +3093,7 @@ MonoBehaviour:
   bullets: 3
   health: 4
   tokens: 0
+  buddyGO: {fileID: 0}
 --- !u!54 &1147284512
 Rigidbody:
   m_ObjectHideFlags: 0

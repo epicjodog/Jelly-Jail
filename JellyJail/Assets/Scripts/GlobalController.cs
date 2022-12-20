@@ -8,14 +8,14 @@ public class GlobalController : MonoBehaviour
 
     public int currentHealth = 4;
     public int maxBullets = 3;
-    public int tokens;
+    public int tokens = 0;
 
-    public bool jellyMagnet; //Increased pickup range of Gel
-    public bool TreasureMagnet; //Increased pickup range of Tokens
+    public bool jellyMagnet; //Increased pickup range of Gel --done
+    public bool TreasureMagnet; //Increased pickup range of Tokens --done
     public bool panicOrb; //Longer invincibility after taking damage
     public bool slimenip; //Guaranteed shop + 5 Token discount on purchases
-    public bool tinyAnvil; //Increases dropkick damage
-    public bool lilBuddy; //Shoot two Gel at once
+    public bool tinyAnvil; //Increases dropkick damage --done
+    public bool lilBuddy; //Shoot two Gel at once --done
     public bool obviousBomb; //Gel shots explode(instead of 1 enemy, hits all in range) (increase hit box)
 
     private void Awake()
@@ -26,5 +26,20 @@ public class GlobalController : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
+    }
+
+    public void ResetUpgrades()
+    {
+        currentHealth = 4;
+        maxBullets = 3;
+        tokens = 0;
+
+        jellyMagnet = false;
+        TreasureMagnet = false;
+        panicOrb = false;
+        slimenip = false;
+        tinyAnvil = false;
+        lilBuddy = false;
+        obviousBomb = false;
     }
 }

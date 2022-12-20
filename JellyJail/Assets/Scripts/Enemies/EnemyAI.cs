@@ -235,14 +235,19 @@ public class EnemyAI : MonoBehaviour
                 other.gameObject.GetComponentInParent<PlayerMovement>().TakeDamage();
             }
         }
+        if (other.gameObject.layer == 7) //layer 7: bullets
+        {
+            TakeDamage(1);
+        }
     }
 
     void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
-        healthText.text = health.ToString();
+        if (health > 0) healthText.text = health.ToString();
         if (health <= 0)
         {
+            healthText.text = "0";
             agent.enabled = false;
             Invoke(nameof(Die), 0.5f); //delayed time before dying, maybe we need it?
                                        //death animation          

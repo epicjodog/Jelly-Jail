@@ -90,6 +90,22 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("picked up a token, " + tokens);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+            //player gets bigger and adds a bullet to inventory
+            transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            bullets++;
+        }
+        if (other.gameObject.CompareTag("Token"))
+        {
+            tokens++;
+            Destroy(other.gameObject);
+            Debug.Log("picked up a token, " + tokens);
+        }
+    }
 
     void FixedUpdate()
     {

@@ -4724,7 +4724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000027418, y: 1.6886}
+  m_AnchoredPosition: {x: -0.000027418, y: -37.2}
   m_SizeDelta: {x: 485.9561, y: 605.6647}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136297237
@@ -6390,7 +6390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000027418, y: 1.6886}
+  m_AnchoredPosition: {x: -0.000027418, y: -35.66}
   m_SizeDelta: {x: 485.9561, y: 605.6647}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303393268
@@ -6548,7 +6548,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gameplay Programming
+  m_text: Gameplay/SFX Programming
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a64e7c1ab8f5274b9dbfba3e48aace4, type: 2}
   m_sharedMaterial: {fileID: -6272088103196067371, guid: 6a64e7c1ab8f5274b9dbfba3e48aace4, type: 2}
@@ -7182,7 +7182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1565563751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10337,7 +10337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8186127364124399398, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_text
-      value: UI Art & Animations
+      value: UI Art/Programming, Animations
       objectReference: {fileID: 0}
     - target: {fileID: 8186127364124399398, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_fontAsset

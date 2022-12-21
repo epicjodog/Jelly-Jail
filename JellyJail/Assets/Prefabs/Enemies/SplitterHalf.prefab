@@ -297,8 +297,9 @@ MonoBehaviour:
     m_Bits: 8
   numberOfTokensOnDeath: {x: 1, y: 2}
   tokenGO: {fileID: 450327324986802546, guid: 25d0ae3db37c7144aa5a418709c6b72a, type: 3}
+  wakeUpTime: 2
   walkPointRange: 8
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 3
   sightRange: 5.96
   attackRange: 1.42
   bulletGO: {fileID: 0}
@@ -315,7 +316,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.69
-  m_Speed: 4
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

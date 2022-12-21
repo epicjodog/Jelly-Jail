@@ -26,6 +26,8 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] LayerMask groundLayer, playerLayer;
     [SerializeField] Vector2 numberOfTokensOnDeath = new (1, 2); //min/max
     [SerializeField] GameObject tokenGO;
+    [SerializeField] float wakeUpTime = 2;
+    EnemySpawner enemySpawner;
 
     [Header("Patrolling")]  
     [SerializeField] float walkPointRange;
@@ -58,7 +60,7 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.Find("PlayerController");
         agent = GetComponent<NavMeshAgent>();
-        
+        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
     }
     private void Start()
     {
@@ -67,6 +69,7 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
+        timer += Time.deltaTime;
         if (health <= 0) return;
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, playerLayer);
@@ -106,7 +109,7 @@ public class EnemyAI : MonoBehaviour
         }
         else if (enemyType == EnemyType.Warden)
         {
-            timer += Time.deltaTime;
+            
             //Debug.Log(timer);
             if (timer >= 20f)
             {
@@ -148,6 +151,8 @@ public class EnemyAI : MonoBehaviour
     {
         agent.SetDestination(transform.position);
         LookAtPlayer();
+        //preventing enemies from immediately attacking the player after spawning 
+        if (wakeUpTime > timer) return;
 
         if (!alreadyAttacked)
         {
@@ -166,6 +171,8 @@ public class EnemyAI : MonoBehaviour
     void ShootPlayer()
     {
         LookAtPlayer();
+        //preventing enemies from immediately shooting the player after spawning 
+        if (wakeUpTime > timer) return;
 
         if (!alreadyAttacked)
         {
@@ -256,6 +263,8 @@ public class EnemyAI : MonoBehaviour
 
     void Die()
     {
+        if (enemyType != EnemyType.Splitter) enemySpawner.totalEnemyCount--;
+        else enemySpawner.totalEnemyCount++; //compensating for the splitter adding 2 new enemies on death
         for (int i = 0; i < Random.Range(numberOfTokensOnDeath.x, numberOfTokensOnDeath.y); i++)
         {
             //Vector3 randomSpawn = new Vector3(transform.position.x + Random.Range(0.25f, 0.6f),

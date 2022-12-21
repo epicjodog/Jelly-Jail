@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 /// <summary>
 /// Player movement, aiming, and firing
 /// </summary>
@@ -9,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] LayerMask groundMask;
     [SerializeField] float moveSpeed;
+    [SerializeField] float invulnerabilityPeriod = 2f;
+    bool isInvulnerable;
     Rigidbody rb;
     Vector3 moveInput;
     Vector3 moveVelocity;
@@ -30,11 +34,14 @@ public class PlayerMovement : MonoBehaviour
     public int tokens = 0;
     [SerializeField] GameObject buddyGO;
 
+    [Header("UI")]
+    [SerializeField] TextMeshProUGUI healthText;
+
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();        
 
         if(GlobalController.Instance.lilBuddy)
         {
@@ -43,8 +50,9 @@ public class PlayerMovement : MonoBehaviour
 
         health = GlobalController.Instance.currentHealth;
         bullets = GlobalController.Instance.maxBullets;
+        if (GlobalController.Instance.panicOrb) invulnerabilityPeriod *= 2;
 
-        //Update UI
+        healthText.text = health.ToString();
     }
 
     // Update is called once per frame
@@ -179,13 +187,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage()
     {
+        if (isInvulnerable) return;
         Debug.LogWarning("Player has taken damage, health: " + health);
         health -= 1;
-        //update text
+        healthText.text = health.ToString();
+        isInvulnerable = true;
+        Invoke(nameof(Recover), invulnerabilityPeriod);
         if(health <= 0)
         {
             Debug.LogWarning("Player has died");
         }
+    }
+    void Recover()
+    {
+        isInvulnerable = false;
     }
 
     public void AddHealthAmmo(int healthAdded, int ammoAdded)

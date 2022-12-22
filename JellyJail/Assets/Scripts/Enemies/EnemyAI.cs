@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float wakeUpTime = 2;
     EnemySpawner enemySpawner;
     AudioManager audioMan;
+    Animator enemyAnim;
 
     [Header("Patrolling")]  
     [SerializeField] float walkPointRange;
@@ -63,6 +64,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
         audioMan = GetComponent<AudioManager>();
+        enemyAnim = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -159,6 +161,7 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             Debug.Log("Attacked Player");
+            enemyAnim.SetTrigger("Attack");
             player.GetComponent<PlayerMovement>().TakeDamage();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -179,6 +182,7 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             audioMan.Play("Shoot");
+            enemyAnim.SetTrigger("Attack");
             GameObject newBullet = Instantiate(bulletGO, firePoint.position, firePoint.rotation);
             newBullet.GetComponent<Rigidbody>().velocity = transform.forward * shootForce;
             //player.GetComponent<PlayerMovement>().TakeDamage();
@@ -199,6 +203,7 @@ public class EnemyAI : MonoBehaviour
         isInAir = !Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f);
         if (!isInAir)
         {
+            enemyAnim.SetTrigger("Special");
             rb.AddForce(new Vector3(0, 50, 0));
             isInAir = true;
             if(!firstShockwave)

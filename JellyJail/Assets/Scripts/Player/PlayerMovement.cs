@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isInAir;
     [SerializeField] float timeBetweenJumps = 3f;
     bool isJumping = false;
+    Animator playerAnim;
 
     [Header("Shooting")]
     Camera mainCamera;
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI tokenText;
     [SerializeField] TextMeshProUGUI waveText;
+    [SerializeField] bool isInShop = false;
     AudioManager audioMan;
     EnemySpawner enemySpawner;
     bool isHealing = false;
@@ -52,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
         audioMan = GetComponent<AudioManager>();
+        playerAnim = GetComponent<Animator>();
 
         if(GlobalController.Instance.lilBuddy)
         {
@@ -72,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Aim();
         Move();
-        waveText.text = enemySpawner.currentWave.ToString();
+        if(!isInShop) waveText.text = enemySpawner.currentWave.ToString();
 
         if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting)
         {
@@ -84,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
             bullets--;
             isShooting = true;
             audioMan.Play("Shoot");
+            playerAnim.SetTrigger("PlayerShoot");
             Invoke(nameof(RechargeShoot), timeBetweenShots);
             ammoText.text = bullets.ToString();
         }
@@ -170,13 +174,16 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         moveVelocity = moveInput * moveSpeed;
+        if(moveVelocity != Vector3.zero) playerAnim.SetBool("PlayerIsMoving", true);
+        else playerAnim.SetBool("PlayerIsMoving", false);
 
-        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f))
         {
             if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
             {
                 moveVelocity.y = 10;
                 rb.velocity = new Vector3(rb.velocity.x, moveVelocity.y, rb.velocity.z);
+                playerAnim.SetTrigger("PlayerDropKick");
                 isJumping = true;
                 Invoke(nameof(RechargeGroundpound), timeBetweenJumps);
             }
@@ -217,6 +224,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isInvulnerable) return;
         audioMan.Play("Hurt");
+        playerAnim.SetTrigger("PlayerDamaged");
         health -= 1;
         healthText.text = health.ToString();
         isInvulnerable = true;

@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Items")]
     public int bullets = 3; //number of bullets carried
     public int health = 4;
+    public int maxHealth = 10;
     public int tokens = 0;
     [SerializeField] GameObject buddyGO;
 

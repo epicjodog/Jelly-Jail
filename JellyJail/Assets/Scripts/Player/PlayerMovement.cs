@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// Player movement, aiming, and firing
 /// </summary>
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     EnemySpawner enemySpawner;
     bool isHealing = false;
     bool localLevelComplete;
+    public bool isDead = false;
 
 
     // Start is called before the first frame update
@@ -76,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
         Aim();
         Move();
         if(!isInShop) waveText.text = enemySpawner.currentWave.ToString();
+
+        if (isDead) return;
 
         if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting)
         {
@@ -232,7 +236,15 @@ public class PlayerMovement : MonoBehaviour
         if(health <= 0)
         {
             Debug.LogWarning("Player has died");
+            //player death animation
+            enemySpawner.audioMan.VolumeFadeOut("BGM", true);
+            enemySpawner.audioMan.VolumeFadeOut("Boss", true);
+            Invoke(nameof(Die), 2);
         }
+    }
+    void Die()
+    {
+        SceneManager.LoadScene("GameOver");
     }
     void Recover()
     {
@@ -252,7 +264,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Save()
     {
-        GlobalController.Instance.currentHealth = health;
-        GlobalController.Instance.tokens = tokens;
+        //GlobalController.Instance.currentHealth = health;
+        //GlobalController.Instance.tokens = tokens;
     }
 }

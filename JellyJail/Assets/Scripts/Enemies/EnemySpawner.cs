@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     bool takingABreak = false;
     int maxWaves = 3;
     public bool levelComplete = false;
-    AudioManager audioMan;
+    public AudioManager audioMan;
 
     //enemy count:
     //Wave 1 = 3-4

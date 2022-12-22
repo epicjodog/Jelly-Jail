@@ -32,6 +32,11 @@ public class EventBoxTrigger : MonoBehaviour
     }
     public void NextLevel()
     {
+        PlayerMovement player;
+        player = GameObject.Find("PlayerController").GetComponent<PlayerMovement>();
+        GlobalController.Instance.currentHealth = player.health;
+        GlobalController.Instance.tokens = player.tokens;
+
         switch (GlobalController.Instance.currentLevel)
         {
             case 1:

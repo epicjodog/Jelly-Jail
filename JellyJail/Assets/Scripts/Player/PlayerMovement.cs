@@ -36,7 +36,14 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] TextMeshProUGUI ammoText;
+    [SerializeField] TextMeshProUGUI tokenText;
+    [SerializeField] TextMeshProUGUI waveText;
     AudioManager audioMan;
+    EnemySpawner enemySpawner;
+    bool isHealing = false;
+    bool localLevelComplete;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,9 +59,11 @@ public class PlayerMovement : MonoBehaviour
 
         health = GlobalController.Instance.currentHealth;
         bullets = GlobalController.Instance.maxBullets;
+        tokens = GlobalController.Instance.tokens;
         if (GlobalController.Instance.panicOrb) invulnerabilityPeriod *= 2;
 
         healthText.text = health.ToString();
+        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
     }
 
     // Update is called once per frame
@@ -62,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Aim();
         Move();
+        waveText.text = enemySpawner.currentWave.ToString();
 
         if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting)
         {
@@ -74,8 +84,14 @@ public class PlayerMovement : MonoBehaviour
             isShooting = true;
             audioMan.Play("Shoot");
             Invoke(nameof(RechargeShoot), timeBetweenShots);
+            ammoText.text = bullets.ToString();
         }
-        
+        if (enemySpawner.levelComplete) localLevelComplete = true; 
+        if(localLevelComplete && !isHealing && health < 10)
+        {
+            isHealing = true;
+            Invoke(nameof(Regenerate), 2f);
+        }
     }
     void RechargeShoot() { isShooting = false; }
     void RechargeGroundpound() { isJumping = false; }
@@ -90,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             bullets++;
             audioMan.Play("Pickup");
+            ammoText.text = bullets.ToString();
         }
         if(collision.gameObject.CompareTag("EnemyBullet"))
         {
@@ -99,8 +116,8 @@ public class PlayerMovement : MonoBehaviour
         {
             tokens++;
             Destroy(collision.gameObject);
-            Debug.Log("picked up a token, " + tokens);
             audioMan.Play("Token");
+            tokenText.text = tokens.ToString();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -198,7 +215,6 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage()
     {
         if (isInvulnerable) return;
-        Debug.LogWarning("Player has taken damage, health: " + health);
         audioMan.Play("Hurt");
         health -= 1;
         healthText.text = health.ToString();
@@ -212,6 +228,12 @@ public class PlayerMovement : MonoBehaviour
     void Recover()
     {
         isInvulnerable = false;
+    }
+    void Regenerate()
+    {
+        health += 1;
+        healthText.text = health.ToString();
+        isHealing = false;
     }
 
     public void AddHealthAmmo(int healthAdded, int ammoAdded)

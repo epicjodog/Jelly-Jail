@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 3196779987966620326}
   - component: {fileID: 3196779987966620321}
   - component: {fileID: 3196779987966620320}
+  - component: {fileID: 2235827594285526765}
   m_Layer: 0
   m_Name: Warden
   m_TagString: Enemy
@@ -198,6 +199,7 @@ MonoBehaviour:
     m_Bits: 8
   numberOfTokensOnDeath: {x: 0, y: 0}
   tokenGO: {fileID: 450327324986802546, guid: 25d0ae3db37c7144aa5a418709c6b72a, type: 3}
+  wakeUpTime: 2
   walkPointRange: 8
   timeBetweenAttacks: 1
   sightRange: 10.6
@@ -257,6 +259,100 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &2235827594285526765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196779987966620345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Hurt
+    type: 0
+    clip: {fileID: 8300000, guid: 1225ec6c3b14a3e43a3a8af66e31edc2, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.7
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 0.3
+    pitchVariance: 0.3
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Groundpound
+    type: 0
+    clip: {fileID: 8300000, guid: c1db05f391c59b04ba0850943376dce5, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.2
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Death
+    type: 0
+    clip: {fileID: 8300000, guid: 949b93abc2fb9394d9bf4e7f9780fd0f, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 0.1
+    pitchVariance: 0.2
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Shoot
+    type: 0
+    clip: {fileID: 8300000, guid: 3e39e88873f32d94c8221f967946b949, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 0.5
+    pitchVariance: 0.2
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Shockwave
+    type: 0
+    clip: {fileID: 8300000, guid: f4fe7e37eb0fddf49882083c4e600c0b, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.5
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.2
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
 --- !u!1 &3196779988498637890
 GameObject:
   m_ObjectHideFlags: 0

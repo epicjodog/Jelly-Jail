@@ -28,6 +28,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] GameObject tokenGO;
     [SerializeField] float wakeUpTime = 2;
     EnemySpawner enemySpawner;
+    AudioManager audioMan;
 
     [Header("Patrolling")]  
     [SerializeField] float walkPointRange;
@@ -61,6 +62,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("PlayerController");
         agent = GetComponent<NavMeshAgent>();
         enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        audioMan = GetComponent<AudioManager>();
     }
     private void Start()
     {
@@ -176,6 +178,7 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
+            audioMan.Play("Shoot");
             GameObject newBullet = Instantiate(bulletGO, firePoint.position, firePoint.rotation);
             newBullet.GetComponent<Rigidbody>().velocity = transform.forward * shootForce;
             //player.GetComponent<PlayerMovement>().TakeDamage();
@@ -202,6 +205,7 @@ public class EnemyAI : MonoBehaviour
             {
                 Instantiate(shockWaveGO, transform.position, Quaternion.identity);
                 transform.rotation = originalRotation;
+                audioMan.Play("Shockwave");
             }
             firstShockwave = false;
         }
@@ -234,6 +238,7 @@ public class EnemyAI : MonoBehaviour
         {
             if(GlobalController.Instance.tinyAnvil) TakeDamage(Random.Range(3, 6));
             else TakeDamage(Random.Range(2, 4));
+            audioMan.Play("Groundpound");
             //uuuuuuuuuuu
             Rigidbody rb = other.gameObject.GetComponentInParent<Rigidbody>();
             rb.velocity = new Vector3(rb.velocity.x, 5, rb.velocity.z);
@@ -250,10 +255,12 @@ public class EnemyAI : MonoBehaviour
 
     void TakeDamage(int damageAmount)
     {
+        audioMan.Play("Hurt");
         health -= damageAmount;
         if (health > 0) healthText.text = health.ToString();
         if (health <= 0)
         {
+            audioMan.Play("Death");
             healthText.text = "0";
             agent.enabled = false;
             Invoke(nameof(Die), 0.5f); //delayed time before dying, maybe we need it?

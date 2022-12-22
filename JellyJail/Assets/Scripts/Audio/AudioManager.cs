@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class AudioManager : MonoBehaviour
 {
 
-	public static AudioManager instance;
+	//public static AudioManager instance;
 
 	public AudioMixerGroup mixerGroup;
 

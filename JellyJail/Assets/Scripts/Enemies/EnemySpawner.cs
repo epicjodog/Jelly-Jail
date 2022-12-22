@@ -13,11 +13,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int waveThreeEnemyCount = 7;
     [SerializeField] float breakTime = 5f;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] Animator exitDoorAnim;
+    [SerializeField] Animator shopDoorAnim;
     public int currentWave = 0;
     public int totalEnemyCount = 0;
     bool takingABreak = false;
     int maxWaves = 3;
     public bool levelComplete = false;
+    AudioManager audioMan;
 
     //enemy count:
     //Wave 1 = 3-4
@@ -31,18 +34,49 @@ public class EnemySpawner : MonoBehaviour
         NewWave();
         if (hasWarden) maxWaves = 4;
         else maxWaves = 3;
+        audioMan = GetComponent<AudioManager>();
+        audioMan.Play("BGM");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(levelComplete)
+        {
+            Debug.Log("Level Complete");
+            if (!hasWarden) audioMan.VolumeFadeOut("BGM", true);
+            else
+            {
+                audioMan.VolumeFadeOut("Boss", true);
+                audioMan.Play("Victory");
+            }
+            exitDoorAnim.SetBool("isOpened", true);
+            audioMan.Play("ExitDoor");
+            int isShopOpen = Random.Range(0, 2);
+            if (isShopOpen == 1 || GlobalController.Instance.slimenip)
+            {
+                shopDoorAnim.SetBool("isOpened", true);
+                audioMan.Play("ShopDoor");
+            }
+                levelComplete = false;
+            takingABreak = true;
+        }
         if (totalEnemyCount <= 0 && currentWave < maxWaves && !takingABreak)
         {
             takingABreak = true;
             currentWave++;
-            Invoke(nameof(NewWave), breakTime);
+            if (currentWave < 4) Invoke(nameof(NewWave), breakTime);
+            else
+            {
+                Invoke(nameof(NewWave), 10);
+                audioMan.VolumeFadeOut("BGM", true);
+                audioMan.Play("Boss");
+            }
         }
-        else levelComplete = true;
+        else if (totalEnemyCount == 0 && currentWave == maxWaves && !takingABreak)
+        {
+            levelComplete = true;
+        }
     }
 
     void NewWave()
@@ -74,7 +108,7 @@ public class EnemySpawner : MonoBehaviour
         if (hasWarden && currentWave > 3)
         {
             Instantiate(warden, Vector3.zero, Quaternion.identity);
-            //play some epic boss music
+            totalEnemyCount++;
         }
 
         Debug.Log("Wave " + currentWave + ", spawning " + enemiesToSpawn + " enemies.");

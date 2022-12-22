@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7790547950516464991}
   - component: {fileID: 7790547950516464990}
   - component: {fileID: 7790547950516464961}
+  - component: {fileID: 3866373193505728943}
   m_Layer: 3
   m_Name: PlayerController
   m_TagString: Player
@@ -136,6 +137,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65
   moveSpeed: 5
+  invulnerabilityPeriod: 2
   isInAir: 0
   timeBetweenJumps: 1
   timeBetweenShots: 0.5
@@ -147,6 +149,84 @@ MonoBehaviour:
   tokens: 0
   buddyGO: {fileID: 1085575036670404347, guid: e310b2507325bfc4faabb32f29901b70, type: 3}
   healthText: {fileID: 6610771064096651296}
+--- !u!114 &3866373193505728943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480159734634178392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Shoot
+    type: 0
+    clip: {fileID: 8300000, guid: 3e39e88873f32d94c8221f967946b949, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Pickup
+    type: 0
+    clip: {fileID: 8300000, guid: 30e4004fa2253cb49968d108ac9e0060, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Hurt
+    type: 0
+    clip: {fileID: 8300000, guid: 1225ec6c3b14a3e43a3a8af66e31edc2, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.6
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.3
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Token
+    type: 0
+    clip: {fileID: 8300000, guid: 508601a937549ec4e96ffa83effd21b5, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.6
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.1
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
 --- !u!1 &1083752136506322891
 GameObject:
   m_ObjectHideFlags: 0

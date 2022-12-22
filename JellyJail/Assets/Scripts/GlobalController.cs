@@ -9,6 +9,7 @@ public class GlobalController : MonoBehaviour
     public int currentHealth = 4;
     public int maxBullets = 3;
     public int tokens = 0;
+    public int currentLevel = 1;
 
     public bool jellyMagnet; //Increased pickup range of Gel --done
     public bool TreasureMagnet; //Increased pickup range of Tokens --done

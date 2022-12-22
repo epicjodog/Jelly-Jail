@@ -36,12 +36,14 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI healthText;
+    AudioManager audioMan;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
-        rb = GetComponent<Rigidbody>();        
+        rb = GetComponent<Rigidbody>();
+        audioMan = GetComponent<AudioManager>();
 
         if(GlobalController.Instance.lilBuddy)
         {
@@ -70,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
             bullets--;
             isShooting = true;
+            audioMan.Play("Shoot");
             Invoke(nameof(RechargeShoot), timeBetweenShots);
         }
         
@@ -86,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
             //player gets bigger and adds a bullet to inventory
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             bullets++;
+            audioMan.Play("Pickup");
         }
         if(collision.gameObject.CompareTag("EnemyBullet"))
         {
@@ -96,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
             tokens++;
             Destroy(collision.gameObject);
             Debug.Log("picked up a token, " + tokens);
+            audioMan.Play("Token");
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -112,6 +117,11 @@ public class PlayerMovement : MonoBehaviour
             tokens++;
             Destroy(other.gameObject);
             Debug.Log("picked up a token, " + tokens);
+        }
+        if (other.gameObject.CompareTag("EnemyBullet")) //Shockwave
+        {
+            TakeDamage();
+            Destroy(other.transform.parent.gameObject);
         }
     }
 
@@ -189,6 +199,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isInvulnerable) return;
         Debug.LogWarning("Player has taken damage, health: " + health);
+        audioMan.Play("Hurt");
         health -= 1;
         healthText.text = health.ToString();
         isInvulnerable = true;

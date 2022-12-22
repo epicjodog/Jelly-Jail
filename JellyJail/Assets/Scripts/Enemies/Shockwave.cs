@@ -22,9 +22,4 @@ public class Shockwave : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player")) Destroy(gameObject);
-    }
 }

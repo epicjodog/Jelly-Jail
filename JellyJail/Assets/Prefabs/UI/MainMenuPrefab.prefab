@@ -144,6 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8186127363184775461}
   - component: {fileID: 8186127363184775459}
+  - component: {fileID: 8132805572149181343}
   m_Layer: 5
   m_Name: UIController
   m_TagString: Untagged
@@ -201,6 +202,52 @@ MonoBehaviour:
   - {fileID: 8186127365010401987}
   nextIButton: {fileID: 8186127364960529318}
   previousIButton: {fileID: 8186127364828569774}
+--- !u!114 &8132805572149181343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186127363184775460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Intro
+    type: 1
+    clip: {fileID: 8300000, guid: d16f29ac3c8dd364cadb604f9756e02a, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.3
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Main Menu
+    type: 1
+    clip: {fileID: 8300000, guid: 31dc9c847bfc0424785505b02f07275b, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 0.3
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
 --- !u!1 &8186127363204033070
 GameObject:
   m_ObjectHideFlags: 0

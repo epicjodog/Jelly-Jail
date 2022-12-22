@@ -25,16 +25,27 @@ public class UIMainMenu : MonoBehaviour
     int currentItemPage = 0;
 
     private Animator currentPanel;
+    AudioManager audioMan;
 
     void Start()
     {
         previousButton.interactable = false;
         previousIButton.interactable = false;
+
+        audioMan = GetComponent<AudioManager>();
+        audioMan.Play("Intro");
+        Invoke(nameof(TransitionToMainMenuMusic), 85);
     }
 
     void Update()
     {
         
+    }
+
+    void TransitionToMainMenuMusic()
+    {
+        audioMan.VolumeFadeOut("Intro", true);
+        audioMan.Play("Main Menu");
     }
 
     public void OnClickPlay()

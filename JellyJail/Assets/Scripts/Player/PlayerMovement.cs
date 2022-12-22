@@ -75,11 +75,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead) return;
+
         Aim();
         Move();
         if(!isInShop) waveText.text = enemySpawner.currentWave.ToString();
-
-        if (isDead) return;
+        
 
         if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting)
         {

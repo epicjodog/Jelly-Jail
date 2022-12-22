@@ -236,6 +236,7 @@ public class PlayerMovement : MonoBehaviour
         if(health <= 0)
         {
             Debug.LogWarning("Player has died");
+            isDead = true;
             //player death animation
             enemySpawner.audioMan.VolumeFadeOut("BGM", true);
             enemySpawner.audioMan.VolumeFadeOut("Boss", true);

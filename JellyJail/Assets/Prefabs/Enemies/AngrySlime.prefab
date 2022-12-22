@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1192517480072476280}
   - component: {fileID: 1192517480072476286}
   - component: {fileID: 8842647117177278703}
+  - component: {fileID: 7921841044532594256}
   m_Layer: 0
   m_Name: AngrySlime
   m_TagString: Enemy
@@ -235,6 +236,26 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
     isPlaying: 0
+--- !u!95 &7921841044532594256
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001705967986257091}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e05b2d3cf988b894688bb53e0bf25b52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &7570451661821092403
 GameObject:
   m_ObjectHideFlags: 0

@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 4063593680568027149}
   - component: {fileID: 7791456286304828090}
   - component: {fileID: 3778479091962614298}
+  - component: {fileID: -2552896140387435031}
   m_Layer: 0
   m_Name: SplitterHalf
   m_TagString: Enemy
@@ -420,3 +421,23 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
     isPlaying: 0
+--- !u!95 &-2552896140387435031
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4063593680568027184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 49047fcf68badf945abb5e2812b7c280, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 2472267096065648671}
   - component: {fileID: 6591891129438926551}
   - component: {fileID: 5274434416079691716}
+  - component: {fileID: 7178764724504069572}
   m_Layer: 0
   m_Name: ShieldedSlime
   m_TagString: Enemy
@@ -518,3 +519,23 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
     isPlaying: 0
+--- !u!95 &7178764724504069572
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472267096065648656}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2375e73300fbf414e89dfa1c26062458, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

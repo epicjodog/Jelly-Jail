@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 1414949789356126754}
   - component: {fileID: 6747023537532675628}
   - component: {fileID: 3796783496722781803}
+  - component: {fileID: 7142129485414503621}
   m_Layer: 0
   m_Name: SpikySlime
   m_TagString: Enemy
@@ -452,3 +453,23 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
     isPlaying: 0
+--- !u!95 &7142129485414503621
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414949789356126758}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6467506fa61a9741b234894ddd94f70, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

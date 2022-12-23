@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public int bullets = 3; //number of bullets carried
     public int health = 4;
     public int maxHealth = 10;
-    public int tokens = 0;
+    //public int tokens = 0;
     [SerializeField] GameObject buddyGO;
 
     [Header("UI")]
@@ -74,8 +74,8 @@ public class PlayerMovement : MonoBehaviour
         healthText.text = health.ToString();
         bullets = GlobalController.Instance.maxBullets;
         ammoText.text = bullets.ToString();
-        tokens = GlobalController.Instance.tokens;
-        tokenText.text = tokens.ToString();
+        //tokens = GlobalController.Instance.tokens;
+        tokenText.text = GlobalController.Instance.tokens.ToString();
         if (GlobalController.Instance.panicOrb) invulnerabilityPeriod *= 2;
 
         healthText.text = health.ToString();
@@ -140,7 +140,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Bullet"))
         {
-            //Debug.Log("picked up a slime ball");
             Destroy(collision.gameObject); //expensive but works
             //player gets bigger and adds a bullet to inventory
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
@@ -155,10 +154,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Token"))
         {
-            tokens++;
+            tokenText.text = GlobalController.Instance.tokens.ToString();
+            GlobalController.Instance.tokens++;
             Destroy(collision.gameObject);
             audioMan.Play("Token");
-            tokenText.text = tokens.ToString();
+            tokenText.text = GlobalController.Instance.tokens.ToString();
         }
         if (collision.gameObject.CompareTag("Item"))
         {
@@ -174,13 +174,15 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             bullets++;
             uIGame.AmmoGain();
+            audioMan.Play("Pickup");
+            ammoText.text = bullets.ToString();
         }
         if (other.gameObject.CompareTag("Token"))
         {
-            tokens++;
+            GlobalController.Instance.tokens++;
             Destroy(other.gameObject);
             audioMan.Play("Token");
-            tokenText.text = tokens.ToString();
+            tokenText.text = GlobalController.Instance.tokens.ToString();
         }
         if (other.gameObject.CompareTag("EnemyBullet")) //Shockwave
         {
@@ -313,7 +315,7 @@ public class PlayerMovement : MonoBehaviour
     {
         healthText.text = health.ToString();
         ammoText.text = bullets.ToString();
-        tokenText.text = tokens.ToString();
+        tokenText.text = GlobalController.Instance.tokens.ToString();
     }
     public void UpdateTextShop()
     {

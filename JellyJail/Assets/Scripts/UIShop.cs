@@ -2,24 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIShop : MonoBehaviour
 {
-    [SerializeField] int hamShankPrice;
-    [SerializeField] int jellyMagnetPrice;
-    [SerializeField] int lilBuddyPrice;
-    [SerializeField] int obviousBombPrice;
-    [SerializeField] int panicOrbPrice;
-    [SerializeField] int slimenipPrice;
-    [SerializeField] int tinyAnvilPrice;
-    [SerializeField] int treasureMagnetPrice;
+    /*
+     * Bandage - 0
+     * Royal Fondue - 1
+     * Gel-In-A-Can - 2
+     * Medicine - 3
+     * Power Potion - 4
+     * Slicecream - 5
+    */
+    [Header("List of Items (keep in the order of the item displays)")]
+    [SerializeField] string[] itemTitle; //title of each item
+    [SerializeField] int[] itemPrices; //price of each item
+    [SerializeField] string[] itemDescriptions; //description of each item
 
-    [SerializeField] int bandagePrice;
-    [SerializeField] int gelInACanPrice;
-    [SerializeField] int medicinePrice;
-    [SerializeField] int powerPotionPrice;
-    [SerializeField] int royalFonduePrice;
-    [SerializeField] int slicecreamPrice;
+    [Header("Item Cards")]
+    [SerializeField] TextMeshProUGUI[] itemTitleText; //0: card 1, 1: card 2, 2: card 3
+    [SerializeField] TextMeshProUGUI[] itemCostText; //price text on each card
+    [SerializeField] TextMeshProUGUI[] itemDescriptionText; //description text on each card
+
+    [Header("Item Displays")]
+    [SerializeField] GameObject[] itemDisplayOne; //GOs of images of each item for card 1
+    [SerializeField] GameObject[] itemDisplayTwo; //card 2
+    [SerializeField] GameObject[] itemDisplayThree; //card 3
+
+    [Header("Sir Catto")]
+    [SerializeField] Animator shopkeeperAnim;
+    [Header("Tokens")]
+    [SerializeField] TextMeshProUGUI tokenText;
+
+    int[] chosenItem = new int[3]; //the chosen item for each card, refer to lines 9-16
 
     PlayerMovement player;
     AudioManager audioMan;
@@ -28,211 +43,88 @@ public class UIShop : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("PlayerController").GetComponent<PlayerMovement>();
+        tokenText.text = GlobalController.Instance.tokens.ToString();
+        audioMan = GetComponent<AudioManager>();
+        gameObject.SetActive(false);
+
+        for (int i = 0; i < 3; i++)
+        {
+            CreateItem(i);
+        }
     }
 
-    public void BuyHamShank()
+    void CreateItem(int cardNumber) //0, 1, 2
     {
-        if(GlobalController.Instance.tokens >= hamShankPrice)
+        chosenItem[cardNumber] = Random.Range(0, 5);
+        for (int i = 0; i < 3; i++)
         {
-            if (player.health <= 16) GlobalController.Instance.currentHealth += 4;
-            else GlobalController.Instance.currentHealth = 20;
-            GlobalController.Instance.tokens -= hamShankPrice;
-            audioMan.Play("Buy");
-            //disable button
+            while (chosenItem[i] == chosenItem[cardNumber] && i != cardNumber)
+            {
+                chosenItem[cardNumber] = Random.Range(0, 5);
+            }
         }
-        else
+
+        itemTitleText[cardNumber].text = itemTitle[chosenItem[cardNumber]];
+        itemCostText[cardNumber].text = itemPrices[chosenItem[cardNumber]].ToString();
+        itemDescriptionText[cardNumber].text = itemDescriptions[chosenItem[cardNumber]];
+        switch (cardNumber)
         {
-            //can't afford
+            case 0:
+                itemDisplayOne[chosenItem[cardNumber]].SetActive(true);
+                break;
+            case 1:
+                itemDisplayTwo[chosenItem[cardNumber]].SetActive(true);
+                break;
+            case 2:
+                itemDisplayThree[chosenItem[cardNumber]].SetActive(true);
+                break;
+            default:
+                break;
         }
-    }
-    public void BuyJellyMagnet()
-    {
-        if (GlobalController.Instance.tokens >= jellyMagnetPrice)
-        {
-            GlobalController.Instance.jellyMagnet = true;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= jellyMagnetPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyLilBuddy()
-    {
-        if (GlobalController.Instance.tokens >= lilBuddyPrice)
-        {
-            GlobalController.Instance.lilBuddy = true;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= lilBuddyPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyObviousBomb()
-    {
-        if (GlobalController.Instance.tokens >= obviousBombPrice)
-        {
-            GlobalController.Instance.obviousBomb = true;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= obviousBombPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyPanicOrb()
-    {
-        if (GlobalController.Instance.tokens >= panicOrbPrice)
-        {
-            GlobalController.Instance.panicOrb = true;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= panicOrbPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuySlimenip()
-    {
-        if (GlobalController.Instance.tokens >= slimenipPrice)
-        {
-            GlobalController.Instance.slimenip = true;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= slimenipPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyTinyAnvil()
-    {
-        if (GlobalController.Instance.tokens >= tinyAnvilPrice)
-        {
-            GlobalController.Instance.tinyAnvil = true;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= tinyAnvilPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyTreasureMagnet()
-    {
-        if (GlobalController.Instance.tokens >= treasureMagnetPrice)
-        {
-            GlobalController.Instance.TreasureMagnet = true;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= treasureMagnetPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyBandage()
-    {
-        if (GlobalController.Instance.tokens >= bandagePrice && player.health > 20)
-        {
-            GlobalController.Instance.currentHealth += 1;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= bandagePrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyGelInACan()
-    {
-        if (GlobalController.Instance.tokens >= gelInACanPrice)
-        {
-            GlobalController.Instance.maxBullets += 1;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= gelInACanPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyMedicine()
-    {
-        if (GlobalController.Instance.tokens >= medicinePrice)
-        {
-            GlobalController.Instance.currentHealth += 2;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= medicinePrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyPowerPotion()
-    {
-        if (GlobalController.Instance.tokens >= powerPotionPrice)
-        {
-            GlobalController.Instance.maxBullets += 1;
-            GlobalController.Instance.currentHealth += 1;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= powerPotionPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuyRoyalFondue()
-    {
-        if (GlobalController.Instance.tokens >= royalFonduePrice)
-        {
-            GlobalController.Instance.maxBullets += 2;
-            GlobalController.Instance.currentHealth += 2;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= royalFonduePrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void BuySlicecream()
-    {
-        if (GlobalController.Instance.tokens >= slicecreamPrice)
-        {
-            GlobalController.Instance.currentHealth += 3;
-            audioMan.Play("Buy");
-            GlobalController.Instance.tokens -= slicecreamPrice;
-            //disable button
-        }
-        else
-        {
-            //can't afford
-        }
-    }
-    public void Exit()
-    {
 
     }
 
+    public void BuyItem(int cardNumber) //0, 1, 2
+    {
+        if(GlobalController.Instance.tokens >= itemPrices[chosenItem[cardNumber]])
+        {
+            GlobalController.Instance.tokens -= itemPrices[chosenItem[cardNumber]];
+            audioMan.Play("Buy");
+            shopkeeperAnim.SetTrigger("CattoBuy");
+            GiveBuff(chosenItem[cardNumber]);
+            tokenText.text = GlobalController.Instance.tokens.ToString();
+        }
+        else
+        {
+            //can't buy
+        }
+    }
 
+    void GiveBuff(int item) //chosenItem
+    {
+        switch (item)
+        {
+            case 0: //Bandage
+                GlobalController.Instance.currentHealth += 1;     
+                break;
+            case 1: //Royal Fondue
+                GlobalController.Instance.maxBullets += 2;
+                GlobalController.Instance.currentHealth += 2;
+                break;
+            case 2: //GelCan
+                GlobalController.Instance.maxBullets += 1;
+                break;
+            case 3: //Medicine
+                GlobalController.Instance.currentHealth += 2;
+                break;
+            case 4: //Power Potion
+                GlobalController.Instance.maxBullets += 1;
+                GlobalController.Instance.currentHealth += 1;
+                break;
+            case 5: //Slicecream
+                GlobalController.Instance.currentHealth += 3;
+                break;
+        }
+        player.UpdateTextShop();
+    }
 }

@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class UIGameOver : MonoBehaviour
 {
+    [SerializeField] Animator deathFadeTransition;
+    private void Awake()
+    {
+        deathFadeTransition.SetTrigger("FadeOut");
+    }
     public void Retry()
     {
         switch (GlobalController.Instance.currentLevel)

@@ -37,6 +37,10 @@ public class EventBoxTrigger : MonoBehaviour
         GlobalController.Instance.currentHealth = player.health;
         GlobalController.Instance.tokens = player.tokens;
 
+        Invoke(nameof(LoadNextLevel), 2f);
+    }
+    void LoadNextLevel()
+    {
         switch (GlobalController.Instance.currentLevel)
         {
             case 1:

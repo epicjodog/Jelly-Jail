@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 450327324986802549}
   - component: {fileID: 4529053805872546815}
   - component: {fileID: 5170855638385761002}
+  - component: {fileID: 3102820366254174016}
   m_Layer: 0
   m_Name: Token
   m_TagString: Token
@@ -142,3 +143,33 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0.18715462, z: 0}
+--- !u!114 &3102820366254174016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450327324986802546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Spawn
+    type: 0
+    clip: {fileID: 8300000, guid: fdce10fdfd27f504a8ee9e49d30f9835, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.3
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 1
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0

@@ -43,11 +43,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] TextMeshProUGUI tokenText;
     [SerializeField] TextMeshProUGUI waveText;
     [SerializeField] bool isInShop = false;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] Animator DeathTransition;
     AudioManager audioMan;
     EnemySpawner enemySpawner;
     bool isHealing = false;
     bool localLevelComplete;
     public bool isDead = false;
+    bool isPaused = false;
 
 
     // Start is called before the first frame update
@@ -64,8 +67,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         health = GlobalController.Instance.currentHealth;
+        healthText.text = health.ToString();
         bullets = GlobalController.Instance.maxBullets;
+        ammoText.text = bullets.ToString();
         tokens = GlobalController.Instance.tokens;
+        tokenText.text = tokens.ToString();
         if (GlobalController.Instance.panicOrb) invulnerabilityPeriod *= 2;
 
         healthText.text = health.ToString();
@@ -75,14 +81,33 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDead) return;
+        if (isDead) 
+        {
+            rb.velocity = Vector3.zero;
+            return; 
+        }
+        if (Input.GetKeyDown(KeyCode.Escape)) //pausing
+        {
+            if (!isPaused)
+            {
+                Time.timeScale = 0.001f;
+                isPaused = true;
+                pauseMenu.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                isPaused = false;
+                pauseMenu.SetActive(false);
+            }
+        }
 
-        Aim();
+        if (!isPaused) Aim();
         Move();
         if(!isInShop) waveText.text = enemySpawner.currentWave.ToString();
         
 
-        if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting)
+        if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting && !isPaused)
         {
             //spawns a bullet and throws it
             GameObject newBullet = Instantiate(bulletGO, firePoint.position, firePoint.rotation);
@@ -101,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isHealing = true;
             Invoke(nameof(Regenerate), 2f);
-        }
+        }       
     }
     void RechargeShoot() { isShooting = false; }
     void RechargeGroundpound() { isJumping = false; }
@@ -241,6 +266,7 @@ public class PlayerMovement : MonoBehaviour
             //player death animation
             enemySpawner.audioMan.VolumeFadeOut("BGM", true);
             enemySpawner.audioMan.VolumeFadeOut("Boss", true);
+            DeathTransition.SetTrigger("Death");
             Invoke(nameof(Die), 2);
         }
     }

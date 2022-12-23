@@ -20,13 +20,12 @@ public class UIGame : MonoBehaviour
     [Header("Inputs")]
     private int currentHealth;
     public int maxHealth;
-    
-    //GlobalController globalController; // currentHealth, maxBullets
-    PlayerMovement playerMovement; // 
 
 
     void Start()
     {
+        maxAmmo = GlobalController.Instance.maxBullets;
+
         while(ammoCount < maxAmmo)
         {
             ammoArsenal[ammoCount].SetActive(true);
@@ -39,8 +38,6 @@ public class UIGame : MonoBehaviour
 
         healthMeter.value = currentHealth;
         healthMeter.maxValue = maxHealth;
-
-        maxAmmo = GlobalController.Instance.maxBullets;
     }
 
     /////////////////////////////////////////////////////////////////////////////////
@@ -76,12 +73,12 @@ public class UIGame : MonoBehaviour
     public void AmmoLoss()
     {
         if (currentAmmo <= 0) return;
-        ammoArsenal[currentAmmo].GetComponent<Image>().color = new Color(0, 0, 0, 1);
+        ammoArsenal[currentAmmo - 1].GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
         currentAmmo--;
     }
     public void AmmoGain()
     {
-        if (currentAmmo >= ammoArsenal.Length) return;
+        if (currentAmmo >= maxAmmo) return;
         ammoArsenal[currentAmmo].GetComponent<Image>().color = new Color(1, 1, 1, 1);
         currentAmmo++;
     }

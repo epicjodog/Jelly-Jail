@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIMainMenu : MonoBehaviour
 {
+    public Animator transitionAnim;
     [Header("Page Anims")]
     public Animator helpAnim;
     public Animator settingsAnim;
@@ -50,10 +51,17 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnClickPlay()
     {
-        print("Playing Game");
+        transitionAnim.SetTrigger("transitionOut");
+        StartCoroutine(TransitionWait());
+    }
+    private IEnumerator TransitionWait()
+    {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("Level1");
     }
 
+    /////////////////////////////////////////////////////////////////////////////////
+    // General Button Clicks
     public void OnClickSettings()
     {
         settingsAnim.SetTrigger("settingsOpen");
@@ -92,11 +100,9 @@ public class UIMainMenu : MonoBehaviour
         if(currentPage != creditsPanels.Length - 1)
         {
             currentPage++;
-            print(currentPage);
             if(currentPage == creditsPanels.Length - 1)
             {
                 nextButton.interactable = false;
-                // currentPage = creditsPanels.Length;
             }
 
             if(currentPage > 0)
@@ -105,8 +111,6 @@ public class UIMainMenu : MonoBehaviour
             }
         }
         else
-
-        print(currentPage);
 
         creditsPanels[currentPage].SetActive(true);
     }

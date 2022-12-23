@@ -6960,7 +6960,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gameplay/SFX Programming
+  m_text: Programming, Audio/SFX Implementation
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a64e7c1ab8f5274b9dbfba3e48aace4, type: 2}
   m_sharedMaterial: {fileID: -6272088103196067371, guid: 6a64e7c1ab8f5274b9dbfba3e48aace4, type: 2}
@@ -10954,7 +10954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8186127364124399398, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_text
-      value: UI Art/Programming, Animations
+      value: "Animation, Rigging, \nUI Assets"
       objectReference: {fileID: 0}
     - target: {fileID: 8186127364124399398, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_fontAsset

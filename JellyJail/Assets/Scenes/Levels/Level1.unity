@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028447, g: 0.22571535, b: 0.3069222, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028463, g: 0.22571571, b: 0.30692297, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5112,6 +5112,7 @@ MonoBehaviour:
   currentWave: 0
   totalEnemyCount: 0
   levelComplete: 0
+  audioMan: {fileID: 0}
 --- !u!4 &1097899325
 Transform:
   m_ObjectHideFlags: 0
@@ -5596,6 +5597,8 @@ MonoBehaviour:
   ammoText: {fileID: 0}
   tokenText: {fileID: 0}
   waveText: {fileID: 0}
+  isInShop: 0
+  isDead: 0
 --- !u!54 &1147284512
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10300,6 +10303,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 121890302, guid: 5b2dcdb0beeeeb547bc8e024d2c9b795, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 948709955, guid: 5b2dcdb0beeeeb547bc8e024d2c9b795, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 480159734634178392, guid: 5b2dcdb0beeeeb547bc8e024d2c9b795, type: 3}
       propertyPath: m_Name
       value: PlayerController

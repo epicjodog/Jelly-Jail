@@ -1364,6 +1364,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365824003}
   m_CullTransparentMesh: 1
+--- !u!95 &425582609 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5801525453546534845, guid: c3d4ee88e1395484bb8bdd340317bc20, type: 3}
+  m_PrefabInstance: {fileID: 92334262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &460305139
 GameObject:
   m_ObjectHideFlags: 0
@@ -10861,6 +10866,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8186127363184775459, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
+      propertyPath: transitionAnim
+      value: 
+      objectReference: {fileID: 425582609}
     - target: {fileID: 8186127363184775459, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: itemPanels.Array.size
       value: 8

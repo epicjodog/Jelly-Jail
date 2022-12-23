@@ -13,6 +13,7 @@ public class UIShop : MonoBehaviour
     [SerializeField] int slimenipPrice;
     [SerializeField] int tinyAnvilPrice;
     [SerializeField] int treasureMagnetPrice;
+
     [SerializeField] int bandagePrice;
     [SerializeField] int gelInACanPrice;
     [SerializeField] int medicinePrice;

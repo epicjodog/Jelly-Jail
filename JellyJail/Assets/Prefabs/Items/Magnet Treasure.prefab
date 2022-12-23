@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3032289613108874609}
   - component: {fileID: 1004351231636208059}
   - component: {fileID: 1004351231636208060}
+  - component: {fileID: 3720861475634100041}
+  - component: {fileID: 4930116416933277408}
   m_Layer: 0
   m_Name: Magnet Treasure
   m_TagString: Untagged
@@ -103,3 +105,29 @@ MonoBehaviour:
   ReverseX: 0
   ReverseY: 0
   ReverseZ: 0
+--- !u!65 &3720861475634100041
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653050240582375534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9660126, y: 1.3620776, z: 0.34894454}
+  m_Center: {x: -0.022440508, y: 0.5500755, z: -0.016498342}
+--- !u!114 &4930116416933277408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653050240582375534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16d388aa3b529943a6a30a4f9d6dae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whichItem: 7

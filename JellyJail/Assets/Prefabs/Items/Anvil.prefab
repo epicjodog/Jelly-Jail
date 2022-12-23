@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7316006084074915369}
   m_Layer: 0
   m_Name: Anvil
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,3 +131,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whichItem: 6
+  lilBuddy: {fileID: 0}

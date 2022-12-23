@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2401104508003482102}
   - component: {fileID: 3606944698643988699}
   - component: {fileID: 4354000388780594660}
+  - component: {fileID: 8207650017539094}
   m_Layer: 7
   m_Name: m_bomb
   m_TagString: Untagged
@@ -112,6 +113,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombShockwave: {fileID: 8089883782026758023}
+--- !u!114 &8207650017539094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202583735453702179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c583a1393bd16674d9372aa50af36600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Bomb
+    type: 0
+    clip: {fileID: 8300000, guid: d047be668003ae64caeeb79d4b4dcc30, type: 3}
+    customAudioSource: {fileID: 0}
+    volume: 1
+    volumeVariance: 0
+    originalVolume: 0
+    pitch: 1
+    pitchVariance: 0.3
+    spatialBlend: 0.5
+    loop: 0
+    playOnAwake: 0
+    bypassReverbZones: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+    isPlaying: 0
 --- !u!1 &8089883782026758023
 GameObject:
   m_ObjectHideFlags: 0

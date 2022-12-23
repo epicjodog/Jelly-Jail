@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7362140612049274928}
   m_Layer: 0
   m_Name: Ham
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,3 +163,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whichItem: 0
+  lilBuddy: {fileID: 0}

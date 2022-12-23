@@ -160,6 +160,10 @@ public class PlayerMovement : MonoBehaviour
             audioMan.Play("Token");
             tokenText.text = tokens.ToString();
         }
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            audioMan.Play("Item");
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

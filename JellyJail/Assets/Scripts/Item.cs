@@ -53,7 +53,7 @@ public class Item : MonoBehaviour
                     GlobalController.Instance.TreasureMagnet = true;
                     break;
             }
-            collision.gameObject.GetComponent<PlayerMovement>().UpdateTextShop();
+            collision.gameObject.GetComponent<PlayerMovement>().UpdateText();
             transform.parent.parent.gameObject.SetActive(false);
         }
     }

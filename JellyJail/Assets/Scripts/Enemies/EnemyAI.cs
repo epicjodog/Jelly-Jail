@@ -252,8 +252,9 @@ public class EnemyAI : MonoBehaviour
                 other.gameObject.GetComponentInParent<PlayerMovement>().TakeDamage();
             }
         }
-        if (other.gameObject.layer == 7) //layer 7: bullets
+        if (other.gameObject.layer == 7 && other.gameObject.CompareTag("Bomb")) //layer 7: bullets
         {
+            //only if it's specifically the bomb shockwave
             TakeDamage(1);
         }
     }

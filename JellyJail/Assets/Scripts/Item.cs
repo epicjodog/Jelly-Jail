@@ -34,7 +34,7 @@ public class Item : MonoBehaviour
                     GlobalController.Instance.jellyMagnet = true;
                     break;
                 case WhichItem.LilBuddy:
-                    GlobalController.Instance.lilBuddy = true;
+                    GlobalController.Instance.lilBuddy += 1;
                     Instantiate(lilBuddy, transform.position, transform.rotation);
                     break;
                 case WhichItem.ObviousBomb:
@@ -53,6 +53,7 @@ public class Item : MonoBehaviour
                     GlobalController.Instance.TreasureMagnet = true;
                     break;
             }
+            collision.gameObject.GetComponent<PlayerMovement>().UpdateTextShop();
             transform.parent.parent.gameObject.SetActive(false);
         }
     }

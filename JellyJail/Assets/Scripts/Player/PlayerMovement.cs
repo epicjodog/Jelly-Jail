@@ -62,9 +62,12 @@ public class PlayerMovement : MonoBehaviour
         audioMan = GetComponent<AudioManager>();
         playerAnim = GetComponent<Animator>();
 
-        if(GlobalController.Instance.lilBuddy)
+        if(GlobalController.Instance.lilBuddy > 0)
         {
-            Instantiate(buddyGO, transform.position, transform.rotation);
+            for (int i = 0; i < GlobalController.Instance.lilBuddy; i++)
+            {
+                Instantiate(buddyGO, transform.position, transform.rotation);
+            }
         }
 
         health = GlobalController.Instance.currentHealth;
@@ -172,7 +175,8 @@ public class PlayerMovement : MonoBehaviour
         {
             tokens++;
             Destroy(other.gameObject);
-            Debug.Log("picked up a token, " + tokens);
+            audioMan.Play("Token");
+            tokenText.text = tokens.ToString();
         }
         if (other.gameObject.CompareTag("EnemyBullet")) //Shockwave
         {

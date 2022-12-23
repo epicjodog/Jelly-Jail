@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bulletGO;
     [SerializeField] Transform firePoint;
     bool isShooting = false;
+    public UIGame uIGame;
 
     [Header("Items")]
     public int bullets = 3; //number of bullets carried
@@ -115,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
             //player gets smaller and removes a bullet from inventory
             transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
             bullets--;
+            uIGame.AmmoLoss();
             isShooting = true;
             audioMan.Play("Shoot");
             playerAnim.SetTrigger("PlayerShoot");
@@ -140,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
             //player gets bigger and adds a bullet to inventory
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             bullets++;
+            uIGame.AmmoGain();
             audioMan.Play("Pickup");
             ammoText.text = bullets.ToString();
         }
@@ -163,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
             //player gets bigger and adds a bullet to inventory
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             bullets++;
+            uIGame.AmmoGain();
         }
         if (other.gameObject.CompareTag("Token"))
         {
@@ -256,6 +260,7 @@ public class PlayerMovement : MonoBehaviour
         audioMan.Play("Hurt");
         playerAnim.SetTrigger("PlayerDamaged");
         health -= 1;
+        uIGame.HealthSetCurrent(health);
         healthText.text = health.ToString();
         isInvulnerable = true;
         Invoke(nameof(Recover), invulnerabilityPeriod);
@@ -281,6 +286,7 @@ public class PlayerMovement : MonoBehaviour
     void Regenerate()
     {
         health += 1;
+        uIGame.HealthSetCurrent(health);
         healthText.text = health.ToString();
         isHealing = false;
     }

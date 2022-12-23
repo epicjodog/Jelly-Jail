@@ -51,7 +51,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void OnClickPlay()
     {
-        transitionAnim.SetTrigger("transitionOut");
+        transitionAnim.SetTrigger("ExitLevel");
         StartCoroutine(TransitionWait());
     }
     private IEnumerator TransitionWait()

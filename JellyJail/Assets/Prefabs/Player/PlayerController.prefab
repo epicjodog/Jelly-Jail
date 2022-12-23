@@ -535,6 +535,7 @@ MonoBehaviour:
   shootForce: 13
   bulletGO: {fileID: 8984918667799580261, guid: 858b8dde247e2b14eaa31af77378ef98, type: 3}
   firePoint: {fileID: 2626875287815786969}
+  uIGame: {fileID: 207354954133000743}
   bullets: 3
   health: 10
   maxHealth: 10
@@ -2307,8 +2308,27 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5455123629275707726, guid: 2476e21c0d4aa6c4688260ca74ec3b60, type: 3}
+      propertyPath: maxHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455123629275707726, guid: 2476e21c0d4aa6c4688260ca74ec3b60, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 7790547950516464961}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2476e21c0d4aa6c4688260ca74ec3b60, type: 3}
+--- !u!114 &207354954133000743 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5455123629275707726, guid: 2476e21c0d4aa6c4688260ca74ec3b60, type: 3}
+  m_PrefabInstance: {fileID: 5284079378212498281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441b9d7855ce9d445b6a53e140a20924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5428946983623008540 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 145149511496731253, guid: 2476e21c0d4aa6c4688260ca74ec3b60, type: 3}

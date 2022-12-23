@@ -16,6 +16,7 @@ public class UIGame : MonoBehaviour
     public Slider healthMeter;
     public GameObject heartDead;
     public GameObject heartAlive;
+    public PlayerMovement playerMovement;
 
     [Header("Inputs")]
     private int currentHealth;
@@ -25,6 +26,8 @@ public class UIGame : MonoBehaviour
     void Start()
     {
         maxAmmo = GlobalController.Instance.maxBullets;
+        maxHealth = playerMovement.maxHealth;
+        print("maxHealth: " + maxHealth);
 
         while(ammoCount < maxAmmo)
         {
@@ -35,9 +38,10 @@ public class UIGame : MonoBehaviour
         print(currentAmmo);
 
         currentHealth = GlobalController.Instance.currentHealth;
-
-        healthMeter.value = currentHealth;
+        print("currentHealth: " + currentHealth);
+                
         healthMeter.maxValue = maxHealth;
+        healthMeter.value = currentHealth;
     }
 
     /////////////////////////////////////////////////////////////////////////////////

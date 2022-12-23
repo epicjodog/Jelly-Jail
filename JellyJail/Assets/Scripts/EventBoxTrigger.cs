@@ -52,7 +52,7 @@ public class EventBoxTrigger : MonoBehaviour
                 GlobalController.Instance.currentLevel = 3;
                 break;
             case 3:
-                SceneManager.LoadScene("Credits");
+                SceneManager.LoadScene("PostCredits");
                 GlobalController.Instance.currentLevel = 4;
                 break;
         }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class UICredits : MonoBehaviour
 {
     public Animator barTransition;
-    public AudioManager audioMan;
+    AudioManager audioMan;
 
     void Start()
     {
@@ -22,6 +22,6 @@ public class UICredits : MonoBehaviour
         yield return new WaitForSeconds(37);
         barTransition.SetTrigger("ExitLevel");
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("PostCredits");
+        SceneManager.LoadScene("MainMenu");
     }
 }

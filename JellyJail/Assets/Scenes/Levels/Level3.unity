@@ -11442,9 +11442,9 @@ MonoBehaviour:
   warden: {fileID: 3196779987966620345, guid: 1024931af18d31e4fbabc5994ae6689c, type: 3}
   hasWarden: 1
   spawnRange: 10
-  waveOneEnemyCount: 4
-  waveTwoEnemyCount: 6
-  waveThreeEnemyCount: 7
+  waveOneEnemyCount: 3
+  waveTwoEnemyCount: 4
+  waveThreeEnemyCount: 5
   breakTime: 5
   groundLayer:
     serializedVersion: 2

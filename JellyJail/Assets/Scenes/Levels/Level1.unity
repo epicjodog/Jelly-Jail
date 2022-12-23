@@ -5134,9 +5134,9 @@ MonoBehaviour:
   warden: {fileID: 0}
   hasWarden: 0
   spawnRange: 10
-  waveOneEnemyCount: 3
-  waveTwoEnemyCount: 4
-  waveThreeEnemyCount: 5
+  waveOneEnemyCount: 2
+  waveTwoEnemyCount: 3
+  waveThreeEnemyCount: 4
   breakTime: 5
   groundLayer:
     serializedVersion: 2

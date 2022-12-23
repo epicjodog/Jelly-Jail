@@ -51,7 +51,7 @@ public class UIMainMenu : MonoBehaviour
     public void OnClickPlay()
     {
         print("Playing Game");
-        // SceneManager.LoadScene("Level_1");
+        SceneManager.LoadScene("Level1");
     }
 
     public void OnClickSettings()

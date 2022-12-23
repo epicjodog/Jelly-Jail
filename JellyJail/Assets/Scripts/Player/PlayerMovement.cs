@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if (GlobalController.Instance.panicOrb) invulnerabilityPeriod *= 2;
 
         healthText.text = health.ToString();
-        enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        if(!isInShop) enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
     }
 
     // Update is called once per frame
@@ -106,9 +106,9 @@ public class PlayerMovement : MonoBehaviour
         if (!isPaused) Aim();
         Move();
         if(!isInShop) waveText.text = enemySpawner.currentWave.ToString();
-        
 
-        if(Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting && !isPaused)
+        if (isInShop) return;
+        if (Input.GetKeyDown(KeyCode.Mouse0) && bullets >= 1 && !isShooting && !isPaused)
         {
             //spawns a bullet and throws it
             GameObject newBullet = Instantiate(bulletGO, firePoint.position, firePoint.rotation);
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetTrigger("PlayerShoot");
             Invoke(nameof(RechargeShoot), timeBetweenShots);
             ammoText.text = bullets.ToString();
-        }
+        }      
         if (enemySpawner.levelComplete) localLevelComplete = true; 
         if(localLevelComplete && !isHealing && health < 10)
         {
@@ -300,5 +300,17 @@ public class PlayerMovement : MonoBehaviour
     {
         //GlobalController.Instance.currentHealth = health;
         //GlobalController.Instance.tokens = tokens;
+    }
+    public void UpdateText()
+    {
+        healthText.text = health.ToString();
+        ammoText.text = bullets.ToString();
+        tokenText.text = tokens.ToString();
+    }
+    public void UpdateTextShop()
+    {
+        healthText.text = GlobalController.Instance.currentHealth.ToString();
+        ammoText.text = GlobalController.Instance.maxBullets.ToString();
+        tokenText.text = GlobalController.Instance.tokens.ToString();
     }
 }

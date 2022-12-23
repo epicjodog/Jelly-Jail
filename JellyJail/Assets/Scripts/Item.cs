@@ -24,39 +24,34 @@ public class Item : MonoBehaviour
         {
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
 
-            if(whichItem == WhichItem.HamShank)
+            switch (whichItem)
             {
-                if (player.health <= 16) GlobalController.Instance.currentHealth += 4;
-                else GlobalController.Instance.currentHealth = 20;
-            }
-            else if (whichItem == WhichItem.JellyMagnet)
-            {
-                GlobalController.Instance.jellyMagnet = true;
-            }
-            else if (whichItem == WhichItem.LilBuddy)
-            {
-                GlobalController.Instance.lilBuddy = true;
-                Instantiate(lilBuddy, transform.position, transform.rotation);
-            }
-            else if (whichItem == WhichItem.ObviousBomb)
-            {
-                GlobalController.Instance.obviousBomb = true;
-            }
-            else if (whichItem == WhichItem.PanicOrb)
-            {
-                GlobalController.Instance.panicOrb = true;
-            }
-            else if (whichItem == WhichItem.Slimenip)
-            {
-                GlobalController.Instance.slimenip = true;
-            }
-            else if (whichItem == WhichItem.TinyAnvil)
-            {
-                GlobalController.Instance.tinyAnvil = true;
-            }
-            else
-            {
-                GlobalController.Instance.TreasureMagnet = true;
+                case WhichItem.HamShank:
+                    if (player.health <= 16) GlobalController.Instance.currentHealth += 4;
+                    else GlobalController.Instance.currentHealth = 20;
+                    break;
+                case WhichItem.JellyMagnet:
+                    GlobalController.Instance.jellyMagnet = true;
+                    break;
+                case WhichItem.LilBuddy:
+                    GlobalController.Instance.lilBuddy = true;
+                    Instantiate(lilBuddy, transform.position, transform.rotation);
+                    break;
+                case WhichItem.ObviousBomb:
+                    GlobalController.Instance.obviousBomb = true;
+                    break;
+                case WhichItem.PanicOrb:
+                    GlobalController.Instance.panicOrb = true;
+                    break;
+                case WhichItem.Slimenip:
+                    GlobalController.Instance.slimenip = true;
+                    break;
+                case WhichItem.TinyAnvil:
+                    GlobalController.Instance.tinyAnvil = true;
+                    break;
+                default:
+                    GlobalController.Instance.TreasureMagnet = true;
+                    break;
             }
             transform.parent.parent.gameObject.SetActive(false);
         }

@@ -38,11 +38,6 @@ public class UIMainMenu : MonoBehaviour
         Invoke(nameof(TransitionToMainMenuMusic), 85);
     }
 
-    void Update()
-    {
-        
-    }
-
     void TransitionToMainMenuMusic()
     {
         audioMan.VolumeFadeOut("Intro", true);

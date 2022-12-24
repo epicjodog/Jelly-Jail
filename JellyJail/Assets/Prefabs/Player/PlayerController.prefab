@@ -2459,6 +2459,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5805110289893467558, guid: 49c6d13153cb77140956037105327256, type: 3}
+      propertyPath: barAnim
+      value: 
+      objectReference: {fileID: 2983630962892273997}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49c6d13153cb77140956037105327256, type: 3}
 --- !u!224 &1282463343778407633 stripped
@@ -2494,6 +2498,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.012032
       objectReference: {fileID: 0}
+    - target: {fileID: 5801525453546534845, guid: c3d4ee88e1395484bb8bdd340317bc20, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4aa0f00c82e377547946d55665ad8232, type: 2}
     - target: {fileID: 5801525455194947176, guid: c3d4ee88e1395484bb8bdd340317bc20, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2604,6 +2612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3d4ee88e1395484bb8bdd340317bc20, type: 3}
+--- !u!95 &2983630962892273997 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5801525453546534845, guid: c3d4ee88e1395484bb8bdd340317bc20, type: 3}
+  m_PrefabInstance: {fileID: 8783378424397549296}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2983630964607692952 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5801525455194947176, guid: c3d4ee88e1395484bb8bdd340317bc20, type: 3}

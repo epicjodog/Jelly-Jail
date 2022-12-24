@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class UIGameOver : MonoBehaviour
 {
     [SerializeField] Animator deathFadeTransition;
+    public Animator barTransition;
     private void Awake()
     {
         deathFadeTransition.SetTrigger("FadeOut");
@@ -27,6 +28,11 @@ public class UIGameOver : MonoBehaviour
         }
     }
     public void Menu()
+    {
+        barTransition.SetTrigger("ExitLevel");
+        Invoke(nameof(MenuTransit), 1);
+    }
+    void MenuTransit()
     {
         SceneManager.LoadScene("MainMenu");
     }

@@ -3013,7 +3013,7 @@ GameObject:
   - component: {fileID: 895601408}
   - component: {fileID: 895601407}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image_ThankYou
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3036,8 +3036,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1624}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: -2502}
+  m_SizeDelta: {x: 937.1489, y: 602.6014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &895601407
 MonoBehaviour:
@@ -3059,7 +3059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ebf511235b126364fb59855218c63117, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5243,7 +5243,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -2828}
-  m_SizeDelta: {x: -756.9109, y: 3325.456}
+  m_SizeDelta: {x: -756.9109, y: 3324.728}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1912531121
 MonoBehaviour:

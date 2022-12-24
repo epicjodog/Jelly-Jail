@@ -9,6 +9,8 @@ TagManager:
   - Groundpound
   - EnemyBullet
   - Token
+  - Bomb
+  - Item
   layers:
   - Default
   - TransparentFX

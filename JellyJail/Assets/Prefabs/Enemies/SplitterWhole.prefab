@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 2
-  health: 6
+  health: 3
   healthText: {fileID: 8356430548188522611}
   agent: {fileID: 8356430548369864350}
   player: {fileID: 0}

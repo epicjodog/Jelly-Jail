@@ -10858,6 +10858,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8186127363181863993, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8186127363184775459, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: transitionAnim
       value: 
@@ -10910,6 +10914,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -6272088103196067371, guid: 6a64e7c1ab8f5274b9dbfba3e48aace4, type: 2}
+    - target: {fileID: 8186127363356660466, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8186127363374368569, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_text
       value: Lil' Buddy
@@ -10963,6 +10971,10 @@ PrefabInstance:
       value: -86.356
       objectReference: {fileID: 0}
     - target: {fileID: 8186127363660954866, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186127363810999313, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -11106,6 +11118,10 @@ PrefabInstance:
     - target: {fileID: 8186127364318452087, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_Name
       value: Text-Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186127364318452087, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8186127364399018314, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_text
@@ -11302,6 +11318,10 @@ PrefabInstance:
     - target: {fileID: 8186127365081166692, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_Name
       value: RMouse-Icon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8186127365081166692, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8186127365081166693, guid: 0037a36193a0dbd4b959ff595b78fa46, type: 3}
       propertyPath: m_AnchoredPosition.x

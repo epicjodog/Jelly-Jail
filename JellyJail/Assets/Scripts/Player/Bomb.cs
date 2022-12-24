@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     [SerializeField] GameObject bombShockwave;
+    AudioManager audioMan;
     bool isExploded = false;
     float timer;
 
@@ -12,6 +13,7 @@ public class Bomb : MonoBehaviour
     void Start()
     {
         bombShockwave.SetActive(false);
+        audioMan = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class Bomb : MonoBehaviour
 
         if (!isExploded)
         {
+            audioMan.PlayForceEntirely("Bomb");
             bombShockwave.SetActive(true);
             bombShockwave.transform.localScale =
             new Vector3(bombShockwave.transform.localScale.x + (3 * Time.deltaTime),

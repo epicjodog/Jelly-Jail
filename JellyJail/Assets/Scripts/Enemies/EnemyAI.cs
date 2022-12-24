@@ -232,13 +232,15 @@ public class EnemyAI : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == 7) //layer 7: bullets
+        if (health < 1) return;
+        if (collision.gameObject.layer == 7) //layer 7: bullets
         {
             TakeDamage(1);
         }      
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (health < 1) return;
         if (other.gameObject.CompareTag("Groundpound") && enemyType != EnemyType.Splitter)
         {
             if(GlobalController.Instance.tinyAnvil) TakeDamage(Random.Range(3, 6));
@@ -252,8 +254,9 @@ public class EnemyAI : MonoBehaviour
                 other.gameObject.GetComponentInParent<PlayerMovement>().TakeDamage();
             }
         }
-        if (other.gameObject.layer == 7) //layer 7: bullets
+        if (other.gameObject.layer == 7 && other.gameObject.CompareTag("Bomb")) //layer 7: bullets
         {
+            //only if it's specifically the bomb shockwave
             TakeDamage(1);
         }
     }

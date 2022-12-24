@@ -33,9 +33,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Items")]
     public int bullets = 3; //number of bullets carried
-    public int health = 4;
+    //public int health = 4;
     public int maxHealth = 10;
-    public int tokens = 0;
+    //public int tokens = 0;
     [SerializeField] GameObject buddyGO;
 
     [Header("UI")]
@@ -62,20 +62,23 @@ public class PlayerMovement : MonoBehaviour
         audioMan = GetComponent<AudioManager>();
         playerAnim = GetComponent<Animator>();
 
-        if(GlobalController.Instance.lilBuddy)
+        if(GlobalController.Instance.lilBuddy > 0)
         {
-            Instantiate(buddyGO, transform.position, transform.rotation);
+            for (int i = 0; i < GlobalController.Instance.lilBuddy; i++)
+            {
+                Instantiate(buddyGO, transform.position, transform.rotation);
+            }
         }
 
-        health = GlobalController.Instance.currentHealth;
-        healthText.text = health.ToString();
+        //health = GlobalController.Instance.currentHealth;
+        healthText.text = GlobalController.Instance.currentHealth.ToString();
         bullets = GlobalController.Instance.maxBullets;
         ammoText.text = bullets.ToString();
-        tokens = GlobalController.Instance.tokens;
-        tokenText.text = tokens.ToString();
+        //tokens = GlobalController.Instance.tokens;
+        tokenText.text = GlobalController.Instance.tokens.ToString();
         if (GlobalController.Instance.panicOrb) invulnerabilityPeriod *= 2;
 
-        healthText.text = health.ToString();
+        //healthText.text = health.ToString();
         if(!isInShop) enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
     }
 
@@ -124,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
             ammoText.text = bullets.ToString();
         }      
         if (enemySpawner.levelComplete) localLevelComplete = true; 
-        if(localLevelComplete && !isHealing && health < 10)
+        if(localLevelComplete && !isHealing && GlobalController.Instance.currentHealth < 10)
         {
             isHealing = true;
             Invoke(nameof(Regenerate), 2f);
@@ -137,7 +140,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Bullet"))
         {
-            //Debug.Log("picked up a slime ball");
             Destroy(collision.gameObject); //expensive but works
             //player gets bigger and adds a bullet to inventory
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
@@ -152,10 +154,15 @@ public class PlayerMovement : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Token"))
         {
-            tokens++;
+            tokenText.text = GlobalController.Instance.tokens.ToString();
+            GlobalController.Instance.tokens++;
             Destroy(collision.gameObject);
             audioMan.Play("Token");
-            tokenText.text = tokens.ToString();
+            tokenText.text = GlobalController.Instance.tokens.ToString();
+        }
+        if (collision.gameObject.CompareTag("Item"))
+        {
+            audioMan.Play("Item");
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -167,12 +174,15 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
             bullets++;
             uIGame.AmmoGain();
+            audioMan.Play("Pickup");
+            ammoText.text = bullets.ToString();
         }
         if (other.gameObject.CompareTag("Token"))
         {
-            tokens++;
+            GlobalController.Instance.tokens++;
             Destroy(other.gameObject);
-            Debug.Log("picked up a token, " + tokens);
+            audioMan.Play("Token");
+            tokenText.text = GlobalController.Instance.tokens.ToString();
         }
         if (other.gameObject.CompareTag("EnemyBullet")) //Shockwave
         {
@@ -259,12 +269,12 @@ public class PlayerMovement : MonoBehaviour
         if (isInvulnerable) return;
         audioMan.Play("Hurt");
         playerAnim.SetTrigger("PlayerDamaged");
-        health -= 1;
-        uIGame.HealthSetCurrent(health);
-        healthText.text = health.ToString();
+        GlobalController.Instance.currentHealth -= 1;
+        uIGame.HealthSetCurrent(GlobalController.Instance.currentHealth);
+        healthText.text = GlobalController.Instance.currentHealth.ToString();
         isInvulnerable = true;
         Invoke(nameof(Recover), invulnerabilityPeriod);
-        if(health <= 0)
+        if(GlobalController.Instance.currentHealth <= 0)
         {
             Debug.LogWarning("Player has died");
             isDead = true;
@@ -285,15 +295,15 @@ public class PlayerMovement : MonoBehaviour
     }
     void Regenerate()
     {
-        health += 1;
-        uIGame.HealthSetCurrent(health);
-        healthText.text = health.ToString();
+        GlobalController.Instance.currentHealth += 1;
+        uIGame.HealthSetCurrent(GlobalController.Instance.currentHealth);
+        healthText.text = GlobalController.Instance.currentHealth.ToString();
         isHealing = false;
     }
 
     public void AddHealthAmmo(int healthAdded, int ammoAdded)
     {
-        health += healthAdded;
+        GlobalController.Instance.currentHealth += healthAdded;
         bullets += ammoAdded;
     }
     public void Save()
@@ -303,9 +313,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void UpdateText()
     {
-        healthText.text = health.ToString();
+        healthText.text = GlobalController.Instance.currentHealth.ToString();
         ammoText.text = bullets.ToString();
-        tokenText.text = tokens.ToString();
+        tokenText.text = GlobalController.Instance.tokens.ToString();
     }
     public void UpdateTextShop()
     {

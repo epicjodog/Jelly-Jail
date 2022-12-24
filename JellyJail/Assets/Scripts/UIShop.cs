@@ -47,6 +47,14 @@ public class UIShop : MonoBehaviour
         audioMan = GetComponent<AudioManager>();
         gameObject.SetActive(false);
 
+        if(GlobalController.Instance.slimenip)
+        {
+            for (int i = 0; i < itemPrices.Length - 1; i++)
+            {
+                itemPrices[i] -= 5;
+            }
+        }
+
         for (int i = 0; i < 3; i++)
         {
             CreateItem(i);

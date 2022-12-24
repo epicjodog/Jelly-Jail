@@ -27,14 +27,14 @@ public class Item : MonoBehaviour
             switch (whichItem)
             {
                 case WhichItem.HamShank:
-                    if (player.health <= 16) GlobalController.Instance.currentHealth += 4;
+                    if (GlobalController.Instance.currentHealth <= 16) GlobalController.Instance.currentHealth += 4;
                     else GlobalController.Instance.currentHealth = 20;
                     break;
                 case WhichItem.JellyMagnet:
                     GlobalController.Instance.jellyMagnet = true;
                     break;
                 case WhichItem.LilBuddy:
-                    GlobalController.Instance.lilBuddy = true;
+                    GlobalController.Instance.lilBuddy += 1;
                     Instantiate(lilBuddy, transform.position, transform.rotation);
                     break;
                 case WhichItem.ObviousBomb:
@@ -53,6 +53,7 @@ public class Item : MonoBehaviour
                     GlobalController.Instance.TreasureMagnet = true;
                     break;
             }
+            collision.gameObject.GetComponent<PlayerMovement>().UpdateText();
             transform.parent.parent.gameObject.SetActive(false);
         }
     }

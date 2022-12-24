@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        if(Vector3.Distance(gameObject.transform.position, player.transform.position) > 20)
+        if(Vector3.Distance(gameObject.transform.position, player.transform.position) > 25)
         {
             player.GetComponent<PlayerMovement>().bullets++;
             Destroy(gameObject);

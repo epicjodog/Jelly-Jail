@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //health = GlobalController.Instance.currentHealth;
+        if(GlobalController.Instance.currentHealth < 1) GlobalController.Instance.currentHealth = 10;
         healthText.text = GlobalController.Instance.currentHealth.ToString();
         bullets = GlobalController.Instance.maxBullets;
         ammoText.text = bullets.ToString();

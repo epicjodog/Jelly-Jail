@@ -11,8 +11,13 @@ public class UIPause : MonoBehaviour
 
     public void OnClickMainMenu()
     {
+        Time.timeScale = 1f;
         barAnim.SetTrigger("ExitLevel");
         Invoke(nameof(WaitingTransition), 1);
+    }
+    private void WaitingTransition()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OnClickSettings()
@@ -33,10 +38,5 @@ public class UIPause : MonoBehaviour
     public void OnClickQuit()
     {
         Application.Quit();
-    }
-
-    private void WaitingTransition()
-    {
-        SceneManager.LoadScene("MainMenu");
     }
 }

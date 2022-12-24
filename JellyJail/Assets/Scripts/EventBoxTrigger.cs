@@ -34,7 +34,7 @@ public class EventBoxTrigger : MonoBehaviour
     {
         PlayerMovement player;
         player = GameObject.Find("PlayerController").GetComponent<PlayerMovement>();
-        GlobalController.Instance.currentHealth = player.health;
+        //GlobalController.Instance.currentHealth = player.health;
         //GlobalController.Instance.tokens = player.tokens;
 
         Invoke(nameof(LoadNextLevel), 2f);

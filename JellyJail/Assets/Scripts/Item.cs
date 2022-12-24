@@ -27,7 +27,7 @@ public class Item : MonoBehaviour
             switch (whichItem)
             {
                 case WhichItem.HamShank:
-                    if (player.health <= 16) GlobalController.Instance.currentHealth += 4;
+                    if (GlobalController.Instance.currentHealth <= 16) GlobalController.Instance.currentHealth += 4;
                     else GlobalController.Instance.currentHealth = 20;
                     break;
                 case WhichItem.JellyMagnet:

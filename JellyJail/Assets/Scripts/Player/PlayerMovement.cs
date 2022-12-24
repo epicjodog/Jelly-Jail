@@ -278,7 +278,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogWarning("Player has died");
             isDead = true;
-            //player death animation
+            playerAnim.SetTrigger("PlayerDeath");
             enemySpawner.audioMan.VolumeFadeOut("BGM", true);
             enemySpawner.audioMan.VolumeFadeOut("Boss", true);
             DeathTransition.SetTrigger("Death");

@@ -48,7 +48,7 @@ public class UIGame : MonoBehaviour
     // Health Functions
     public void HealthSetCurrent(int recievedHealth)
     {
-        if(currentHealth == 0)
+        if(recievedHealth <= 0)
         {
             heartDead.SetActive(true);
             heartAlive.SetActive(false);
